@@ -88,6 +88,43 @@ namespace _125GateApp
             }
         }
 
+        /// <summary>
+        /// 读取卡属性（普通卡/学生卡/敬老卡/爱心卡）；卡不存在或属性未设置时返回 null。
+        /// </summary>
+        public string GetCardProperty(string cardNo)
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "SELECT property FROM card WHERE card_no = @card", conn))
+                {
+                    cmd.Parameters.AddWithValue("card", cardNo);
+                    object value = cmd.ExecuteScalar();
+                    return value == null || value == DBNull.Value ? null : (string)value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 保存卡属性；卡不存在时返回 false（按注册充值页流程，应先充值建卡）。
+        /// </summary>
+        public bool UpdateCardProperty(string cardNo, string property)
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "UPDATE card SET property = @property, updated_at = now() " +
+                    "WHERE card_no = @card RETURNING card_no", conn))
+                {
+                    cmd.Parameters.AddWithValue("property", property);
+                    cmd.Parameters.AddWithValue("card", cardNo);
+                    return cmd.ExecuteScalar() != null;
+                }
+            }
+        }
+
         public OpenTripInfo GetOpenTrip(string cardNo)
         {
             using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))

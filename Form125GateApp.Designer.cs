@@ -28,12 +28,12 @@ namespace _125GateApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel2 = new System.Windows.Forms.Panel();
             this.llRecClear = new System.Windows.Forms.LinkLabel();
             this.llSendClear = new System.Windows.Forms.LinkLabel();
@@ -116,6 +116,10 @@ namespace _125GateApp
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -864,6 +868,10 @@ namespace _125GateApp
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.button5);
+            this.panel3.Controls.Add(this.comboBox2);
+            this.panel3.Controls.Add(this.label26);
+            this.panel3.Controls.Add(this.label25);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.lbZCState);
@@ -874,6 +882,7 @@ namespace _125GateApp
             this.panel3.Controls.Add(this.llDoorGetCard);
             this.panel3.Controls.Add(this.lbDoorCard);
             this.panel3.Controls.Add(this.label6);
+            this.panel3.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panel3.Location = new System.Drawing.Point(1, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
@@ -906,7 +915,7 @@ namespace _125GateApp
             // 
             this.lbZCState.AutoSize = true;
             this.lbZCState.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbZCState.Location = new System.Drawing.Point(535, 299);
+            this.lbZCState.Location = new System.Drawing.Point(535, 345);
             this.lbZCState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbZCState.Name = "lbZCState";
             this.lbZCState.Size = new System.Drawing.Size(35, 18);
@@ -916,7 +925,7 @@ namespace _125GateApp
             // btnZC
             // 
             this.btnZC.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnZC.Location = new System.Drawing.Point(867, 254);
+            this.btnZC.Location = new System.Drawing.Point(867, 300);
             this.btnZC.Margin = new System.Windows.Forms.Padding(4);
             this.btnZC.Name = "btnZC";
             this.btnZC.Size = new System.Drawing.Size(100, 29);
@@ -929,7 +938,7 @@ namespace _125GateApp
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(424, 299);
+            this.label3.Location = new System.Drawing.Point(424, 345);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 18);
@@ -939,7 +948,7 @@ namespace _125GateApp
             // tbNum
             // 
             this.tbNum.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbNum.Location = new System.Drawing.Point(538, 251);
+            this.tbNum.Location = new System.Drawing.Point(538, 297);
             this.tbNum.Margin = new System.Windows.Forms.Padding(4);
             this.tbNum.Name = "tbNum";
             this.tbNum.Size = new System.Drawing.Size(220, 27);
@@ -949,7 +958,7 @@ namespace _125GateApp
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(424, 254);
+            this.label8.Location = new System.Drawing.Point(424, 300);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 18);
@@ -1056,35 +1065,79 @@ namespace _125GateApp
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart2.Legends.Add(legend9);
             this.chart2.Location = new System.Drawing.Point(6, 32);
             this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart2.Series.Add(series9);
             this.chart2.Size = new System.Drawing.Size(747, 550);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea10.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart1.Legends.Add(legend10);
             this.chart1.Location = new System.Drawing.Point(759, 32);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chart1.Series.Add(series10);
             this.chart1.Size = new System.Drawing.Size(600, 550);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.label25.Location = new System.Drawing.Point(424, 255);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(62, 18);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "属性：";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label26.Location = new System.Drawing.Point(535, 255);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(35, 18);
+            this.label26.TabIndex = 12;
+            this.label26.Text = "...";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "普通卡",
+            "学生卡",
+            "敬老卡",
+            "爱心卡"});
+            this.comboBox2.Location = new System.Drawing.Point(638, 255);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(120, 26);
+            this.comboBox2.TabIndex = 13;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(867, 250);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 29);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "确定";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form125GateApp
             // 
@@ -1231,6 +1284,9 @@ namespace _125GateApp
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
-

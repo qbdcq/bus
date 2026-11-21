@@ -27,6 +27,26 @@ namespace _125GateApp
         public decimal? MaxFare { get; set; }
         public string EffectiveFrom { get; set; }
         public string EffectiveTo { get; set; }
+
+        // 卡属性折扣价格方案：普通/学生/敬老/爱心（0=免费，1=全价）
+        public decimal DiscountNormal { get; set; }
+        public decimal DiscountStudent { get; set; }
+        public decimal DiscountElder { get; set; }
+        public decimal DiscountLove { get; set; }
+
+        /// <summary>
+        /// 按卡属性（card.property 的中文值）返回折扣系数，未知属性一律按普通卡全价处理。
+        /// </summary>
+        public decimal GetDiscount(string cardProperty)
+        {
+            switch (cardProperty)
+            {
+                case "学生卡": return DiscountStudent;
+                case "敬老卡": return DiscountElder;
+                case "爱心卡": return DiscountLove;
+                default: return DiscountNormal;
+            }
+        }
     }
 
     /// <summary>
@@ -96,7 +116,11 @@ namespace _125GateApp
                     ? (decimal?)null
                     : decimal.Parse(ruleRow["max_fare"], CultureInfo.InvariantCulture),
                 EffectiveFrom = ruleRow["effective_from"],
-                EffectiveTo = ruleRow["effective_to"]
+                EffectiveTo = ruleRow["effective_to"],
+                DiscountNormal = ParseDiscount(ruleRow, "discount_normal", 1.00m),
+                DiscountStudent = ParseDiscount(ruleRow, "discount_student", 1.00m),
+                DiscountElder = ParseDiscount(ruleRow, "discount_elder", 1.00m),
+                DiscountLove = ParseDiscount(ruleRow, "discount_love", 1.00m)
             };
 
             return Create(stations, rule);
@@ -140,7 +164,8 @@ namespace _125GateApp
                 }
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(
-                    "SELECT base_fare, base_distance_m, step_distance_m, step_fare, max_fare, effective_from::text " +
+                    "SELECT base_fare, base_distance_m, step_distance_m, step_fare, max_fare, effective_from::text, " +
+                    "discount_normal, discount_student, discount_elder, discount_love " +
                     "FROM fare_rule " +
                     "WHERE effective_from <= CURRENT_DATE AND (effective_to IS NULL OR effective_to >= CURRENT_DATE) " +
                     "ORDER BY effective_from DESC LIMIT 1", conn))
@@ -155,7 +180,11 @@ namespace _125GateApp
                             StepDistanceM = reader.GetInt32(2),
                             StepFare = reader.GetDecimal(3),
                             MaxFare = reader.IsDBNull(4) ? (decimal?)null : reader.GetDecimal(4),
-                            EffectiveFrom = reader.GetString(5)
+                            EffectiveFrom = reader.GetString(5),
+                            DiscountNormal = reader.GetDecimal(6),
+                            DiscountStudent = reader.GetDecimal(7),
+                            DiscountElder = reader.GetDecimal(8),
+                            DiscountLove = reader.GetDecimal(9)
                         };
                     }
                 }
@@ -258,7 +287,8 @@ namespace _125GateApp
         }
 
         /// <summary>
-        /// 票价 = 起步价 + ceil(max(0, 里程 - 起步里程) / 每档里程) * 每档加价，超过封顶价时取封顶价。
+        /// 票价 = 起步价 + (里程 - 起步里程) / 每档里程 × 每档加价，超过封顶价时取封顶价，
+        /// 结果保留两位小数（不向上取整）。
         /// </summary>
         public decimal GetFare(int fromSeq, int toSeq)
         {
@@ -283,8 +313,7 @@ namespace _125GateApp
             if (distance > Rule.BaseDistanceM)
             {
                 int extra = distance - Rule.BaseDistanceM;
-                int steps = (int)Math.Ceiling(extra / (double)Rule.StepDistanceM);
-                fare += steps * Rule.StepFare;
+                fare += (extra / (decimal)Rule.StepDistanceM) * Rule.StepFare;
             }
 
             if (Rule.MaxFare.HasValue && fare > Rule.MaxFare.Value)
@@ -292,8 +321,27 @@ namespace _125GateApp
                 fare = Rule.MaxFare.Value;
             }
 
+            fare = Math.Round(fare, 2, MidpointRounding.AwayFromZero);
+
             cache[key] = fare;
             return fare;
+        }
+
+        /// <summary>
+        /// 计算两站之间按卡属性折扣后的票价：全价 × 该属性的折扣系数，保留两位小数。
+        /// </summary>
+        public decimal GetFare(int fromSeq, int toSeq, string cardProperty)
+        {
+            return ApplyDiscount(GetFare(fromSeq, toSeq), cardProperty);
+        }
+
+        /// <summary>
+        /// 对全票价应用卡属性折扣：全价 × 折扣系数，保留两位小数。爱心卡折扣为 0 时即免费。
+        /// </summary>
+        public decimal ApplyDiscount(decimal fullFare, string cardProperty)
+        {
+            decimal multiplier = Rule.GetDiscount(cardProperty);
+            return Math.Round(fullFare * multiplier, 2, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>
@@ -333,7 +381,7 @@ namespace _125GateApp
 
         /// <summary>
         /// 返回某段行程的票价计算过程，例如：
-        /// 2.00 + 向上取整((12.80 - 10.00) / 5.00) × 1.00 = 3.00
+        /// 2.00 + (32.80 - 10.00) / 5.00 × 1.00 = 6.56
         /// </summary>
         public string GetFareExpression(int fromSeq, int toSeq)
         {
@@ -343,27 +391,28 @@ namespace _125GateApp
             }
 
             int distance = GetDistanceM(fromSeq, toSeq);
-            decimal fare = GetFare(fromSeq, toSeq);
 
             if (distance <= Rule.BaseDistanceM)
             {
-                return string.Format(CultureInfo.InvariantCulture, "{0:F2} = {1:F2}", Rule.BaseFare, fare);
+                return string.Format(CultureInfo.InvariantCulture, "{0:F2} = {1:F2}", Rule.BaseFare, GetFare(fromSeq, toSeq));
             }
 
-            int steps = (int)Math.Ceiling((distance - Rule.BaseDistanceM) / (double)Rule.StepDistanceM);
-            decimal rawFare = Rule.BaseFare + steps * Rule.StepFare;
+            decimal rawFare = Rule.BaseFare
+                + ((distance - Rule.BaseDistanceM) / (decimal)Rule.StepDistanceM) * Rule.StepFare;
+            bool capped = Rule.MaxFare.HasValue && rawFare > Rule.MaxFare.Value;
+            decimal finalFare = capped ? Rule.MaxFare.Value : Math.Round(rawFare, 2, MidpointRounding.AwayFromZero);
 
             string expression = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0:F2} + 向上取整(({1:F2} - {2:F2}) / {3:F2}) × {4:F2} = {5:F2}",
+                "{0:F2} + ({1:F2} - {2:F2}) / {3:F2} × {4:F2} = {5:F2}",
                 Rule.BaseFare,
                 distance / 1000m,
                 Rule.BaseDistanceM / 1000m,
                 Rule.StepDistanceM / 1000m,
                 Rule.StepFare,
-                fare);
+                finalFare);
 
-            if (rawFare > fare)
+            if (capped)
             {
                 expression += "（封顶）";
             }
@@ -433,10 +482,10 @@ namespace _125GateApp
             WriteTextWithBom(Path.Combine(directory, "stations.csv"), stationsCsv.ToString());
 
             StringBuilder rulesCsv = new StringBuilder();
-            rulesCsv.AppendLine("line_id,base_fare,base_distance_m,step_distance_m,step_fare,max_fare,effective_from,effective_to");
+            rulesCsv.AppendLine("line_id,base_fare,base_distance_m,step_distance_m,step_fare,max_fare,effective_from,effective_to,discount_normal,discount_student,discount_elder,discount_love");
             rulesCsv.AppendLine(string.Format(
                 CultureInfo.InvariantCulture,
-                "{0},{1:F2},{2},{3},{4:F2},{5},{6},{7}",
+                "{0},{1:F2},{2},{3},{4:F2},{5},{6},{7},{8:F2},{9:F2},{10:F2},{11:F2}",
                 Stations[0].LineId == 0 ? 1 : Stations[0].LineId,
                 Rule.BaseFare,
                 Rule.BaseDistanceM,
@@ -446,7 +495,11 @@ namespace _125GateApp
                     ? Rule.MaxFare.Value.ToString("F2", CultureInfo.InvariantCulture)
                     : "",
                 Rule.EffectiveFrom ?? "",
-                Rule.EffectiveTo ?? ""));
+                Rule.EffectiveTo ?? "",
+                Rule.DiscountNormal,
+                Rule.DiscountStudent,
+                Rule.DiscountElder,
+                Rule.DiscountLove));
 
             WriteTextWithBom(Path.Combine(directory, "fare_rules.csv"), rulesCsv.ToString());
         }
@@ -483,8 +536,8 @@ namespace _125GateApp
         {
             string text = string.Format(
                 CultureInfo.InvariantCulture,
-                "计价规则：起步价 {0:F2} 元（含 {1:F2} km），超出后每 {2:F2} km 加 {3:F2} 元；" +
-                "票价 = 起步价 + 向上取整((里程 - 起步里程) / 每档里程) × 每档加价",
+                "计价规则：起步价 {0:F2} 元(含 {1:F2} km)，超出后每 {2:F2} km 加 {3:F2} 元；" +
+                "票价 = 起步价 + (里程 - 起步里程) / 每档里程 × 每档加价。",
                 Rule.BaseFare,
                 Rule.BaseDistanceM / 1000m,
                 Rule.StepDistanceM / 1000m,
@@ -494,11 +547,31 @@ namespace _125GateApp
             {
                 text += string.Format(CultureInfo.InvariantCulture, "；封顶 {0:F2} 元", Rule.MaxFare.Value);
             }
+            text += string.Format(
+                CultureInfo.InvariantCulture,
+                "；折扣方案：普通 {0:F2} 折 / 学生 {1:F2} 折 / 敬老 {2:F2} 折 / 爱心 {3:F2} 折",
+                Rule.DiscountNormal * 10,
+                Rule.DiscountStudent * 10,
+                Rule.DiscountElder * 10,
+                Rule.DiscountLove * 10);
             if (!string.IsNullOrWhiteSpace(Rule.EffectiveFrom))
             {
                 text += "；生效日期 " + Rule.EffectiveFrom;
             }
             return text;
+        }
+
+        private static decimal ParseDiscount(IDictionary<string, string> row, string key, decimal defaultValue)
+        {
+            string raw;
+            if (!row.TryGetValue(key, out raw) || string.IsNullOrWhiteSpace(raw))
+            {
+                return defaultValue;
+            }
+            decimal value;
+            return decimal.TryParse(raw, NumberStyles.Number, CultureInfo.InvariantCulture, out value)
+                ? value
+                : defaultValue;
         }
 
         private static List<Dictionary<string, string>> ReadCsv(string path)

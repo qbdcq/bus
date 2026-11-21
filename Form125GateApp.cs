@@ -338,6 +338,29 @@ namespace _125GateApp
             return fareTable.GetFare(firstSeq, lastSeq);
         }
 
+        /// <summary>
+        /// 返回卡属性的折扣说明，用于刷卡日志；普通卡/未设置属性返回空串。
+        /// </summary>
+        private string GetPropertyDiscountText(string cardProperty)
+        {
+            if (string.IsNullOrEmpty(cardProperty)
+                || fareTable == null || fareTable.Rule == null)
+            {
+                return "";
+            }
+
+            decimal multiplier = fareTable.Rule.GetDiscount(cardProperty);
+            if (multiplier >= 1.00m)
+            {
+                return "";
+            }
+            if (multiplier <= 0m)
+            {
+                return "，" + cardProperty + "（免费）";
+            }
+            return "，" + cardProperty + "（" + (multiplier * 10m).ToString("0.##") + " 折）";
+        }
+
         private void dataGridView1_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
         {
             if (fareTable == null || e.RowIndex < 0 || e.ColumnIndex <= 0)
@@ -433,14 +456,18 @@ namespace _125GateApp
 
                         if (currentReadMode == CardReadMode.Board)
                         {
-                            // 上车：预扣全程票价（按里程计价）
-                            decimal preDeduct = GetMaxFare();
-                            if (preDeduct <= 0)
+                            // 上车：预扣全程票价（按里程计价），并按卡属性折算折扣
+                            if (fareTable == null || GetMaxFare() <= 0)
                             {
                                 textBox1.AppendText("卡号：" + cardNum + " - 票价表未加载，无法上车" + Environment.NewLine);
                                 currentReadMode = CardReadMode.None;
                                 return;
                             }
+
+                            string cardProperty = cardRepository.GetCardProperty(cardNum);
+                            decimal preDeduct = fareTable != null
+                                ? fareTable.ApplyDiscount(GetMaxFare(), cardProperty)
+                                : GetMaxFare();
 
                             // 上次忘记下车：按全程票价结算
                             decimal? forgottenFare = cardRepository.CloseForgottenTrip(cardNum);
@@ -471,7 +498,9 @@ namespace _125GateApp
                             {
                                 textBox1.AppendText("卡号：" + cardNum + " - 上车成功（站点："
                                     + GetStationName(currentStationIndex) + "，预扣全程票价 "
-                                    + preDeduct.ToString("F2") + " 元，余额 "
+                                    + preDeduct.ToString("F2") + " 元"
+                                    + GetPropertyDiscountText(cardProperty)
+                                    + "，余额 "
                                     + result.Balance.ToString("F2") + " 元）" + Environment.NewLine);
                             }
                         }
@@ -487,11 +516,12 @@ namespace _125GateApp
                             }
 
                             int alightSeq = currentStationIndex + 1;
+                            string cardProperty = cardRepository.GetCardProperty(cardNum);
                             int distanceM = fareTable != null
                                 ? fareTable.GetDistanceM(openTrip.BoardSeq, alightSeq)
                                 : 0;
                             decimal actualFare = fareTable != null
-                                ? fareTable.GetFare(openTrip.BoardSeq, alightSeq)
+                                ? fareTable.GetFare(openTrip.BoardSeq, alightSeq, cardProperty)
                                 : 0m;
 
                             EndTripResult endResult = cardRepository.EndTrip(
@@ -508,7 +538,9 @@ namespace _125GateApp
                                     + GetStationName(openTrip.BoardSeq - 1) + " → "
                                     + GetStationName(currentStationIndex) + "，" + stations + " 站，"
                                     + (distanceM / 1000.0).ToString("F2") + " km，实扣 "
-                                    + actualFare.ToString("F2") + " 元，退还 "
+                                    + actualFare.ToString("F2") + " 元"
+                                    + GetPropertyDiscountText(cardProperty)
+                                    + "，退还 "
                                     + endResult.Refund.ToString("F2") + " 元，余额 "
                                     + endResult.Balance.ToString("F2") + " 元）" + Environment.NewLine);
                             }
@@ -532,6 +564,17 @@ namespace _125GateApp
                         else
                         {
                             label9.Text = "该卡未注册，请先充值";
+                        }
+
+                        // 刷新卡属性显示，并将下拉框预选到当前属性，避免误改
+                        label26.Text = "...";
+                        if (cardRepository != null)
+                        {
+                            string property = cardRepository.GetCardProperty(currentCardNum);
+                            label26.Text = string.IsNullOrEmpty(property) ? "未设置" : property;
+
+                            int index = comboBox2.Items.IndexOf(property);
+                            comboBox2.SelectedIndex = index >= 0 ? index : 0;
                         }
                     }
                 }
@@ -600,6 +643,47 @@ namespace _125GateApp
             catch (Exception ex)
             {
                 lbZCState.Text = "充值失败：" + ex.Message;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            lbZCState.Text = "....";
+
+            if (cardRepository == null)
+            {
+                lbZCState.Text = "数据库未配置，无法保存属性";
+                return;
+            }
+
+            if (lbDoorCard.Text.Equals("...") || lbDoorCard.Text.Equals(""))
+            {
+                lbZCState.Text = "请先获取卡号";
+                return;
+            }
+
+            string selectedProperty = comboBox2.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedProperty))
+            {
+                lbZCState.Text = "请选择卡属性";
+                return;
+            }
+
+            try
+            {
+                if (cardRepository.UpdateCardProperty(lbDoorCard.Text, selectedProperty))
+                {
+                    label26.Text = selectedProperty;
+                    lbZCState.Text = "属性保存成功：" + selectedProperty;
+                }
+                else
+                {
+                    lbZCState.Text = "该卡未注册，请先充值";
+                }
+            }
+            catch (Exception ex)
+            {
+                lbZCState.Text = "属性保存失败：" + ex.Message;
             }
         }
 

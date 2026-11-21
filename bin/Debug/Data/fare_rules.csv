@@ -1,2 +1,2 @@
-﻿line_id,base_fare,base_distance_m,step_distance_m,step_fare,max_fare,effective_from,effective_to
-1,2.00,10000,5000,1.00,,2026-01-01,
+﻿line_id,base_fare,base_distance_m,step_distance_m,step_fare,max_fare,effective_from,effective_to,discount_normal,discount_student,discount_elder,discount_love
+1,2.00,10000,5000,1.00,,2026-01-01,,1.00,0.50,0.50,0.00
