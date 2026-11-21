@@ -1,0 +1,414 @@
+[{
+	"Title": "CC2530传感器技术",
+	"Img": "Images/传感器.png",
+	"Experiments": [{
+		"Title": "温湿度传感器",
+		"FormName":"Temp.FormTemp",
+		"dllPath": "plugin/CC2530Temp/Temp.dll"
+	},
+	{
+		"Title": "振动传感器",
+		"FormName":"Shock.FormShock",
+		"dllPath": "plugin/CC2530Shock/Shock.dll"
+	},
+	{
+		"Title": "空气质量传感器",
+		"FormName":"Arofene.FormArofene",
+		"dllPath": "plugin/CC2530Arofene/Arofene.dll"
+	},
+	{
+		"Title": "光照传感器",
+		"FormName":"Beam.FormBeam",
+		"dllPath": "plugin/CC2530Beam/Beam.dll"
+	},
+
+	{
+		"Title": "雨露传感器",
+		"FormName":"Dew.FormDew",
+		"dllPath": "plugin/CC2530Dew/Dew.dll"
+	}
+	,{
+		"Title": "霍尔传感器",
+		"FormName":"Hall.FormHall",
+		"dllPath": "plugin/CC2530Hall/Hall.dll"
+	},{
+		"Title": "干簧管传感器",
+		"FormName":"Pipe.FormPipe",
+		"dllPath": "plugin/CC2530Pipe/Pipe.dll"
+	},{
+		"Title": "红外反射传感器",
+		"FormName":"InfredRange.FormInfred",
+		"dllPath": "plugin/CC2530InfredRange/InfredRange.dll"
+	},{
+		"Title": "九轴传感器",
+		"FormName":"Nineaxis.FormNineaxis",
+		"dllPath": "plugin/CC2530Nineaxis/Nineaxis.dll"
+	},{
+		"Title": "人体检测传感器",
+		"FormName":"Human.FormHuman",
+		"dllPath": "plugin/CC2530Human/Human.dll"
+	}
+	
+	]
+},
+
+{
+	"Title": "无线传感网技术",
+	"Img": "Images/传感器.png",
+	"Experiments": [{
+		"Title": "4G",
+		"FormName":"Wire4G.FormWire4G",
+		"dllPath": "plugin/Wire4G/Wire4G.dll"
+	}
+	]
+},
+
+
+
+
+
+
+
+{
+	"Title": "单片机传感器系列",
+	"Img": "Images/u48.png",
+	"Experiments": [{
+		"Title": "温湿度传感器",
+		"FormName":"Temp.FormTemp",
+		"dllPath": "plugin/Temp/Temp.dll"
+	}
+	,{
+		"Title": "光敏传感器",
+		"FormName":"Line.FormLine",
+		"dllPath": "plugin/Line/Line.dll"
+	},{
+		"Title": "PM2.5传感器",
+		"FormName":"PM.FormPm",
+		"dllPath": "plugin/PM/PM.dll"
+	},{
+		"Title": "结露传感器",
+		"FormName":"Dew.FormDew",
+		"dllPath": "plugin/Dew/Dew.dll"
+	},{
+		"Title": "超声波传感器",
+		"FormName":"Ultrasonic.FormUltra",
+		"dllPath": "plugin/Ultrasonic/Ultrasonic.dll"
+	},{
+		"Title": "红外反射传感器",
+		"FormName":"InfredRange.FormInfred",
+		"dllPath": "plugin/InfredRange/InfredRange.dll"
+	},{
+		"Title": "霍尔传感器",
+		"FormName":"Hall.FormHall",
+		"dllPath": "plugin/Hall/Hall.dll"
+	},{
+		"Title": "称重传感器",
+		"FormName":"Pressure.FormPressure",
+		"dllPath": "plugin/Pressure/Pressure.dll"
+	},{
+		"Title": "九轴传感器",
+		"FormName":"Nineaxis.FormNineaxis",
+		"dllPath": "plugin/Nineaxis/Nineaxis.dll"
+	},{
+		"Title": "热释红外传感器",
+		"FormName":"Human.FormHuman",
+		"dllPath": "plugin/Human/Human.dll"
+	},
+	{
+		"Title": "振动传感器",
+		"FormName":"Shock.FormShock",
+		"dllPath": "plugin/Shock/Shock.dll"
+	},
+	{
+		"Title": "声音检测传感器",
+		"FormName":"Sound.FormSound",
+		"dllPath": "plugin/Sound/Sound.dll"
+	},{
+		"Title": "紫外线传感器",
+		"FormName":"Rays.FormRays",
+		"dllPath": "plugin/Rays/Rays.dll"
+	},{
+		"Title": "环境光传感器",
+		"FormName":"Beam.FormBeam",
+		"dllPath": "plugin/Beam/Beam.dll"
+	},{
+		"Title": "红外对射传感器",
+		"FormName":"Fwd.FormFwd",
+		"dllPath": "plugin/Fwd/Fwd.dll"
+	},
+	{
+		"Title": "颜色识别传感器",
+		"FormName":"ColorCheck.FormColorCheck",
+		"dllPath": "plugin/ColorCheck/ColorCheck.dll"
+	}
+	]
+},
+{
+	"Title": "联动设备教学资源库",
+	"Img": "Images/u65.png",
+	"Experiments": [
+
+	{
+		"Title": "继电器传感器",
+		"FormName":"Key.FormKey",
+		"dllPath": "plugin/Key/Key.dll"
+	}
+	,
+
+	{
+		"Title": "触摸按键",
+		"FormName":"TouchKey.FormTouchKey",
+		"dllPath": "plugin/TouchKey/TouchKey.dll"
+	}
+	,
+
+	{
+		"Title": "电磁铁传感器",
+		"FormName":"Electromagnet.FormElectromagnet",
+		"dllPath": "plugin/Electromagnet/Electromagnet.dll"
+	}
+	,
+	{
+		"Title": "矩阵键盘",
+		"FormName":"MechKey.FormMechKey",
+		"dllPath": "plugin/MechKey/MechKey.dll"
+	}
+	,
+	{
+		"Title": "声光报警",
+		"FormName":"AcoustoAlarm.FormAcoustoAlarm",
+		"dllPath": "plugin/AcoustoAlarm/AcoustoAlarm.dll"
+	}
+	
+	,
+	{
+		"Title": "风扇控制",
+		"FormName":"Fan.FormFan",
+		"dllPath": "plugin/Fan/Fan.dll"
+	}
+	
+	,
+	{
+		"Title": "步进电机",
+		"FormName":"StepMotor.FormStepMotor",
+		"dllPath": "plugin/StepMotor/StepMotor.dll"
+	}
+	,
+	{
+		"Title": "直流电机",
+		"FormName":"DcMotor.FormDcMotor",
+		"dllPath": "plugin/DcMotor/DcMotor.dll"
+	}
+	,
+
+	{
+		"Title": "舵机",
+		"FormName":"Steering.FormSteering",
+		"dllPath": "plugin/Steering/Steering.dll"
+	
+	}]
+}
+,
+{"Title": "场景应用搭建",
+	"Img": "Images/project.png",
+	"Experiments": [
+
+	{
+		"Title": "传感器联动实验",
+		"FormName":"LinkExperiment.FormLinkExperiment",
+		"dllPath": "plugin/LinkExperiment/LinkExperiment.dll"
+	}]
+	}
+	,
+{"Title": "识别技术",
+	"Img": "Images/shibie.png",
+	"Experiments": [
+
+	{
+		"Title": "1.1 低频卡串口测试及射频开关实验",
+		"FormName":"_125Com.Form125Com",
+		"dllPath": "plugin/125Com/125Com.dll"
+	},
+	{
+		"Title": "1.2 低频卡读卡实验",
+		"FormName":"_125SingleCard.Form125SingleCard",
+		"dllPath": "plugin/125SingleCard/125SingleCard.dll"
+	},
+	{
+		"Title": "1.3 低频卡初始化实验",
+		"FormName":"_125CardInit.Form125CardInit",
+		"dllPath": "plugin/125CardInit/125CardInit.dll"
+	}
+	,
+	{
+		"Title": "1.4 低频卡地址空间常规读写操作实验",
+		"FormName":"_125NormalWR.Form125NormalWR",
+		"dllPath": "plugin/125NormalWR/125NormalWR.dll"
+	},
+	{
+		"Title": "1.5 低频卡地址空间加密读写操作实验",
+		"FormName":"_125PubKeyWR.Form125PubKeyWR",
+		"dllPath": "plugin/125PubKeyWR/125PubKeyWR.dll"
+	}
+	,
+	{
+		"Title": "1.6 低频卡新卡制作实验",
+		"FormName":"_125NewCard.Form125NewCard",
+		"dllPath": "plugin/125NewCard/125NewCard.dll"
+	}
+	,
+	{
+		"Title": "1.7 低频卡门禁系统综合实验",
+		"FormName":"_125GateApp.Form125GateApp",
+		"dllPath": "plugin/125GateApp/125GateApp.dll"
+	}
+,
+	{
+		"Title": "2.1 高频串口测试、天线开关及协议设置实验",
+		"FormName":"_1356Com.Form1356Com",
+		"dllPath": "plugin/1356Com/1356Com.dll"
+	}
+	,
+	{
+		"Title": "2.2 高频14443A卡激活与休眠实验",
+		"FormName":"_14443Active.Form14443Active",
+		"dllPath": "plugin/14443Active/14443Active.dll"
+	}
+	,
+	{
+		"Title": "2.3 高频14443A卡密钥验证及读写操作实验",
+		"FormName":"_14443AWriteRead.Form14443AWriteRead",
+		"dllPath": "plugin/14443AWriteRead/14443AWriteRead.dll"
+	}
+	,
+	{
+		"Title": "2.4 高频15693卡读卡实验",
+		"FormName":"_15693ReadCard.Form15693ReadCard",
+		"dllPath": "plugin/15693ReadCard/15693ReadCard.dll"
+	}
+	,
+	{
+		"Title": "2.5 高频15693卡选中及读写块操作实验",
+		"FormName":"_15693ReadWriteBlock.Form15693ReadWriteBlock",
+		"dllPath": "plugin/15693ReadWriteBlock/15693ReadWriteBlock.dll"
+	}
+	,
+	{
+		"Title": "2.6 高频15693卡选中及写AFI及DSFID操作实验",
+		"FormName":"_15693WRParam.Form15693WRParam",
+		"dllPath": "plugin/15693WRParam/15693WRParam.dll"
+	}
+	,
+	{
+		"Title": "2.7 高频14443A卡停车收费综合应用实验",
+		"FormName":"_14443AEtcApp.Form14443AEtcApp",
+		"dllPath": "plugin/14443AEtcApp/14443AEtcApp.dll"
+	}
+	,
+	{
+		"Title": "3.1 超高频串口测试及获取阅读器模块信息实验",
+		"FormName":"UhfComTest.FormUhfComTest",
+		"dllPath": "plugin/UhfComTest/UhfComTest.dll"
+	}
+	,
+	{
+		"Title": "3.2 超高频阅读器频率，功率参数实验",
+		"FormName":"UhfFreqPow.FormUhfFreqPow",
+		"dllPath": "plugin/UhfFreqPow/UhfFreqPow.dll"
+	}
+	,
+	{
+		"Title": "3.3 超高频电子标签轮询操作实验",
+		"FormName":"UhfReadCard.FormUhfReadCard",
+		"dllPath": "plugin/UhfReadCard/UhfReadCard.dll"
+	}
+	,
+	{
+		"Title": "3.4 超高频电子标签锁定与解锁实验",
+		"FormName":"UhfLock.FormUhfLock",
+		"dllPath": "plugin/UhfLock/UhfLock.dll"
+	}
+	,
+	{
+		"Title": "3.5 超高频电子标签数据存储区读写实验",
+		"FormName":"UhfReadWriteCard.FormUhfReadWriteCard",
+		"dllPath": "plugin/UhfReadWriteCard/UhfReadWriteCard.dll"
+	}
+	,
+	{
+		"Title": "3.6 超高频电子标签ETC综合实验",
+		"FormName":"UhfEtcApp.FormUhfEtcApp",
+		"dllPath": "plugin/UhfEtcApp/UhfEtcApp.dll"
+	}
+	,
+	{
+		"Title": "4.1 2.4G有源阅读器参数实验",
+		"FormName":"_24Parameter.Form24Parameter",
+		"dllPath": "plugin/24Parameter/24Parameter.dll"
+	}
+	,
+	{
+		"Title": "4.2 2.4G有源标签参数实验",
+		"FormName":"_24TagParam.Form24TagParam",
+		"dllPath": "plugin/24TagParam/24TagParam.dll"
+	}
+	,
+	{
+		"Title": "4.3 2.4G有源标签存储区读写实验",
+		"FormName":"_24TagMemory.Form24TagMemory",
+		"dllPath": "plugin/24TagMemory/24TagMemory.dll"
+	}
+	,
+	{
+		"Title": "4.4 2.4G有源标签控制实验",
+		"FormName":"_24TagControl.Form24TagControl",
+		"dllPath": "plugin/24TagControl/24TagControl.dll"
+	}
+	,
+	{
+		"Title": "5.1 条码设备串口连接测试实验",
+		"FormName":"BarCodeTest.FormBarCodeTest",
+		"dllPath": "plugin/BarCodeTest/BarCodeTest.dll"
+	}
+	,
+	{
+		"Title": "5.2 条码识读参数实验",
+		"FormName":"BarCodeParam.FormBarCodeParam",
+		"dllPath": "plugin/BarCodeParam/BarCodeParam.dll"
+	}
+	,
+	{
+		"Title": "5.3 条码识读选择实验",
+		"FormName":"BarCodeSelectModel.FormBarCodeSelectModel",
+		"dllPath": "plugin/BarCodeSelectModel/BarCodeSelectModel.dll"
+	}
+	,
+	{
+		"Title": "5.4 条码识读付费综合实验",
+		"FormName":"BarCodePayApp.FormBarCodePayApp",
+		"dllPath": "plugin/BarCodePayApp/BarCodePayApp.dll"
+	}
+,
+	{
+		"Title": "6.1 指纹录入、删除实验",
+		"FormName":"LoopsEnter.FormLoopsEnter",
+		"dllPath": "plugin/LoopsEnter/LoopsEnter.dll"
+	}
+	,
+	{
+		"Title": "6.2 指纹搜索验证实验",
+		"FormName":"LoopSearch.FormLoopSearch",
+		"dllPath": "plugin/LoopSearch/LoopSearch.dll"
+	}
+	,
+	{
+		"Title": "6.3 指纹智能锁综合应用实验",
+		"FormName":"LoopDoorApp.FormLoopDoorApp",
+		"dllPath": "plugin/LoopDoorApp/LoopDoorApp.dll"
+	}
+	
+
+	]
+	}
+	
+]
