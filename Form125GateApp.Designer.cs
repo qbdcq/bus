@@ -28,12 +28,12 @@ namespace _125GateApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel2 = new System.Windows.Forms.Panel();
             this.llRecClear = new System.Windows.Forms.LinkLabel();
             this.llSendClear = new System.Windows.Forms.LinkLabel();
@@ -44,21 +44,7 @@ namespace _125GateApp
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.arrowPictureBox15 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox14 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox13 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox12 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox11 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox10 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox9 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox8 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox7 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox6 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox5 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox4 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox3 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox2 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox1 = new _125GateApp.ArrowPictureBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -98,6 +84,10 @@ namespace _125GateApp
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lbZCState = new System.Windows.Forms.Label();
@@ -112,33 +102,31 @@ namespace _125GateApp
             this.lblFareFormula = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.arrowPictureBox15 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox14 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox13 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox12 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox11 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox10 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox9 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox8 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox7 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox6 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox5 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox4 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox3 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox2 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox1 = new _125GateApp.ArrowPictureBox();
             this.panel2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -162,6 +150,21 @@ namespace _125GateApp
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -271,6 +274,7 @@ namespace _125GateApp
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.arrowPictureBox15);
             this.panel1.Controls.Add(this.arrowPictureBox14);
             this.panel1.Controls.Add(this.arrowPictureBox13);
@@ -331,163 +335,15 @@ namespace _125GateApp
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // arrowPictureBox15
+            // button7
             // 
-            this.arrowPictureBox15.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox15.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox15.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox15.Location = new System.Drawing.Point(214, 265);
-            this.arrowPictureBox15.Name = "arrowPictureBox15";
-            this.arrowPictureBox15.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox15.TabIndex = 68;
-            this.arrowPictureBox15.TabStop = false;
-            // 
-            // arrowPictureBox14
-            // 
-            this.arrowPictureBox14.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox14.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox14.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox14.Location = new System.Drawing.Point(361, 265);
-            this.arrowPictureBox14.Name = "arrowPictureBox14";
-            this.arrowPictureBox14.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox14.TabIndex = 67;
-            this.arrowPictureBox14.TabStop = false;
-            // 
-            // arrowPictureBox13
-            // 
-            this.arrowPictureBox13.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox13.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox13.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox13.Location = new System.Drawing.Point(507, 265);
-            this.arrowPictureBox13.Name = "arrowPictureBox13";
-            this.arrowPictureBox13.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox13.TabIndex = 66;
-            this.arrowPictureBox13.TabStop = false;
-            // 
-            // arrowPictureBox12
-            // 
-            this.arrowPictureBox12.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox12.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox12.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox12.Location = new System.Drawing.Point(652, 265);
-            this.arrowPictureBox12.Name = "arrowPictureBox12";
-            this.arrowPictureBox12.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox12.TabIndex = 65;
-            this.arrowPictureBox12.TabStop = false;
-            // 
-            // arrowPictureBox11
-            // 
-            this.arrowPictureBox11.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox11.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox11.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox11.Location = new System.Drawing.Point(796, 265);
-            this.arrowPictureBox11.Name = "arrowPictureBox11";
-            this.arrowPictureBox11.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox11.TabIndex = 64;
-            this.arrowPictureBox11.TabStop = false;
-            // 
-            // arrowPictureBox10
-            // 
-            this.arrowPictureBox10.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox10.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox10.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox10.Location = new System.Drawing.Point(953, 265);
-            this.arrowPictureBox10.Name = "arrowPictureBox10";
-            this.arrowPictureBox10.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox10.TabIndex = 63;
-            this.arrowPictureBox10.TabStop = false;
-            // 
-            // arrowPictureBox9
-            // 
-            this.arrowPictureBox9.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox9.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox9.Location = new System.Drawing.Point(1105, 265);
-            this.arrowPictureBox9.Name = "arrowPictureBox9";
-            this.arrowPictureBox9.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox9.TabIndex = 62;
-            this.arrowPictureBox9.TabStop = false;
-            // 
-            // arrowPictureBox8
-            // 
-            this.arrowPictureBox8.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox8.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox8.Direction = _125GateApp.ArrowDirection.Down;
-            this.arrowPictureBox8.Location = new System.Drawing.Point(1176, 174);
-            this.arrowPictureBox8.Name = "arrowPictureBox8";
-            this.arrowPictureBox8.Size = new System.Drawing.Size(47, 49);
-            this.arrowPictureBox8.TabIndex = 61;
-            this.arrowPictureBox8.TabStop = false;
-            // 
-            // arrowPictureBox7
-            // 
-            this.arrowPictureBox7.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox7.Location = new System.Drawing.Point(1105, 84);
-            this.arrowPictureBox7.Name = "arrowPictureBox7";
-            this.arrowPictureBox7.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox7.TabIndex = 60;
-            this.arrowPictureBox7.TabStop = false;
-            // 
-            // arrowPictureBox6
-            // 
-            this.arrowPictureBox6.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox6.Location = new System.Drawing.Point(953, 84);
-            this.arrowPictureBox6.Name = "arrowPictureBox6";
-            this.arrowPictureBox6.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox6.TabIndex = 59;
-            this.arrowPictureBox6.TabStop = false;
-            // 
-            // arrowPictureBox5
-            // 
-            this.arrowPictureBox5.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox5.Location = new System.Drawing.Point(805, 84);
-            this.arrowPictureBox5.Name = "arrowPictureBox5";
-            this.arrowPictureBox5.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox5.TabIndex = 58;
-            this.arrowPictureBox5.TabStop = false;
-            // 
-            // arrowPictureBox4
-            // 
-            this.arrowPictureBox4.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox4.Location = new System.Drawing.Point(652, 84);
-            this.arrowPictureBox4.Name = "arrowPictureBox4";
-            this.arrowPictureBox4.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox4.TabIndex = 57;
-            this.arrowPictureBox4.TabStop = false;
-            // 
-            // arrowPictureBox3
-            // 
-            this.arrowPictureBox3.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox3.Location = new System.Drawing.Point(507, 84);
-            this.arrowPictureBox3.Name = "arrowPictureBox3";
-            this.arrowPictureBox3.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox3.TabIndex = 56;
-            this.arrowPictureBox3.TabStop = false;
-            // 
-            // arrowPictureBox2
-            // 
-            this.arrowPictureBox2.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox2.Location = new System.Drawing.Point(361, 84);
-            this.arrowPictureBox2.Name = "arrowPictureBox2";
-            this.arrowPictureBox2.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox2.TabIndex = 55;
-            this.arrowPictureBox2.TabStop = false;
-            // 
-            // arrowPictureBox1
-            // 
-            this.arrowPictureBox1.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox1.Location = new System.Drawing.Point(214, 84);
-            this.arrowPictureBox1.Name = "arrowPictureBox1";
-            this.arrowPictureBox1.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox1.TabIndex = 54;
-            this.arrowPictureBox1.TabStop = false;
+            this.button7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button7.Location = new System.Drawing.Point(361, 472);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(148, 63);
+            this.button7.TabIndex = 70;
+            this.button7.Text = "换向";
+            this.button7.UseVisualStyleBackColor = false;
             // 
             // label24
             // 
@@ -516,7 +372,7 @@ namespace _125GateApp
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Location = new System.Drawing.Point(458, 413);
+            this.button3.Location = new System.Drawing.Point(361, 392);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(148, 63);
             this.button3.TabIndex = 51;
@@ -527,7 +383,7 @@ namespace _125GateApp
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(268, 413);
+            this.button2.Location = new System.Drawing.Point(155, 472);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(148, 63);
             this.button2.TabIndex = 50;
@@ -845,7 +701,7 @@ namespace _125GateApp
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(80, 413);
+            this.button1.Location = new System.Drawing.Point(155, 392);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 63);
             this.button1.TabIndex = 0;
@@ -888,6 +744,50 @@ namespace _125GateApp
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1357, 587);
             this.panel3.TabIndex = 1;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(867, 250);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 29);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "确定";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "普通卡",
+            "学生卡",
+            "敬老卡",
+            "爱心卡"});
+            this.comboBox2.Location = new System.Drawing.Point(638, 255);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(120, 26);
+            this.comboBox2.TabIndex = 13;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label26.Location = new System.Drawing.Point(535, 255);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(35, 18);
+            this.label26.TabIndex = 12;
+            this.label26.Text = "...";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.label25.Location = new System.Drawing.Point(424, 255);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(62, 18);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "属性：";
             // 
             // label9
             // 
@@ -1034,6 +934,8 @@ namespace _125GateApp
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.chart2);
@@ -1046,9 +948,27 @@ namespace _125GateApp
             this.tabPage2.Text = "乘客OD分析";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(294, 7);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(63, 15);
+            this.label27.TabIndex = 6;
+            this.label27.Text = "label27";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(212, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(76, 23);
+            this.button8.TabIndex = 5;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(471, 0);
+            this.button4.Location = new System.Drawing.Point(515, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(81, 26);
             this.button4.TabIndex = 4;
@@ -1065,79 +985,193 @@ namespace _125GateApp
             // 
             // chart2
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart2.Legends.Add(legend9);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(6, 32);
             this.chart2.Name = "chart2";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chart2.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(747, 550);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
             // 
             // chart1
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chart1.Legends.Add(legend10);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(759, 32);
             this.chart1.Name = "chart1";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.chart1.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(600, 550);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // label25
+            // arrowPictureBox15
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.label25.Location = new System.Drawing.Point(424, 255);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(62, 18);
-            this.label25.TabIndex = 11;
-            this.label25.Text = "属性：";
+            this.arrowPictureBox15.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox15.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox15.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox15.Location = new System.Drawing.Point(214, 265);
+            this.arrowPictureBox15.Name = "arrowPictureBox15";
+            this.arrowPictureBox15.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox15.TabIndex = 68;
+            this.arrowPictureBox15.TabStop = false;
             // 
-            // label26
+            // arrowPictureBox14
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label26.Location = new System.Drawing.Point(535, 255);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(35, 18);
-            this.label26.TabIndex = 12;
-            this.label26.Text = "...";
+            this.arrowPictureBox14.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox14.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox14.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox14.Location = new System.Drawing.Point(361, 265);
+            this.arrowPictureBox14.Name = "arrowPictureBox14";
+            this.arrowPictureBox14.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox14.TabIndex = 67;
+            this.arrowPictureBox14.TabStop = false;
             // 
-            // comboBox2
+            // arrowPictureBox13
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "普通卡",
-            "学生卡",
-            "敬老卡",
-            "爱心卡"});
-            this.comboBox2.Location = new System.Drawing.Point(638, 255);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(120, 26);
-            this.comboBox2.TabIndex = 13;
+            this.arrowPictureBox13.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox13.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox13.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox13.Location = new System.Drawing.Point(507, 265);
+            this.arrowPictureBox13.Name = "arrowPictureBox13";
+            this.arrowPictureBox13.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox13.TabIndex = 66;
+            this.arrowPictureBox13.TabStop = false;
             // 
-            // button5
+            // arrowPictureBox12
             // 
-            this.button5.Location = new System.Drawing.Point(867, 250);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 29);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "确定";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.arrowPictureBox12.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox12.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox12.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox12.Location = new System.Drawing.Point(652, 265);
+            this.arrowPictureBox12.Name = "arrowPictureBox12";
+            this.arrowPictureBox12.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox12.TabIndex = 65;
+            this.arrowPictureBox12.TabStop = false;
+            // 
+            // arrowPictureBox11
+            // 
+            this.arrowPictureBox11.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox11.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox11.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox11.Location = new System.Drawing.Point(796, 265);
+            this.arrowPictureBox11.Name = "arrowPictureBox11";
+            this.arrowPictureBox11.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox11.TabIndex = 64;
+            this.arrowPictureBox11.TabStop = false;
+            // 
+            // arrowPictureBox10
+            // 
+            this.arrowPictureBox10.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox10.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox10.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox10.Location = new System.Drawing.Point(953, 265);
+            this.arrowPictureBox10.Name = "arrowPictureBox10";
+            this.arrowPictureBox10.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox10.TabIndex = 63;
+            this.arrowPictureBox10.TabStop = false;
+            // 
+            // arrowPictureBox9
+            // 
+            this.arrowPictureBox9.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox9.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox9.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox9.Location = new System.Drawing.Point(1105, 265);
+            this.arrowPictureBox9.Name = "arrowPictureBox9";
+            this.arrowPictureBox9.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox9.TabIndex = 62;
+            this.arrowPictureBox9.TabStop = false;
+            // 
+            // arrowPictureBox8
+            // 
+            this.arrowPictureBox8.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox8.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox8.Direction = _125GateApp.ArrowDirection.Down;
+            this.arrowPictureBox8.Location = new System.Drawing.Point(1176, 174);
+            this.arrowPictureBox8.Name = "arrowPictureBox8";
+            this.arrowPictureBox8.Size = new System.Drawing.Size(47, 49);
+            this.arrowPictureBox8.TabIndex = 61;
+            this.arrowPictureBox8.TabStop = false;
+            // 
+            // arrowPictureBox7
+            // 
+            this.arrowPictureBox7.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox7.Location = new System.Drawing.Point(1105, 84);
+            this.arrowPictureBox7.Name = "arrowPictureBox7";
+            this.arrowPictureBox7.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox7.TabIndex = 60;
+            this.arrowPictureBox7.TabStop = false;
+            // 
+            // arrowPictureBox6
+            // 
+            this.arrowPictureBox6.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox6.Location = new System.Drawing.Point(953, 84);
+            this.arrowPictureBox6.Name = "arrowPictureBox6";
+            this.arrowPictureBox6.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox6.TabIndex = 59;
+            this.arrowPictureBox6.TabStop = false;
+            // 
+            // arrowPictureBox5
+            // 
+            this.arrowPictureBox5.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox5.Location = new System.Drawing.Point(805, 84);
+            this.arrowPictureBox5.Name = "arrowPictureBox5";
+            this.arrowPictureBox5.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox5.TabIndex = 58;
+            this.arrowPictureBox5.TabStop = false;
+            // 
+            // arrowPictureBox4
+            // 
+            this.arrowPictureBox4.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox4.Location = new System.Drawing.Point(652, 84);
+            this.arrowPictureBox4.Name = "arrowPictureBox4";
+            this.arrowPictureBox4.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox4.TabIndex = 57;
+            this.arrowPictureBox4.TabStop = false;
+            // 
+            // arrowPictureBox3
+            // 
+            this.arrowPictureBox3.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox3.Location = new System.Drawing.Point(507, 84);
+            this.arrowPictureBox3.Name = "arrowPictureBox3";
+            this.arrowPictureBox3.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox3.TabIndex = 56;
+            this.arrowPictureBox3.TabStop = false;
+            // 
+            // arrowPictureBox2
+            // 
+            this.arrowPictureBox2.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox2.Location = new System.Drawing.Point(361, 84);
+            this.arrowPictureBox2.Name = "arrowPictureBox2";
+            this.arrowPictureBox2.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox2.TabIndex = 55;
+            this.arrowPictureBox2.TabStop = false;
+            // 
+            // arrowPictureBox1
+            // 
+            this.arrowPictureBox1.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox1.Location = new System.Drawing.Point(214, 84);
+            this.arrowPictureBox1.Name = "arrowPictureBox1";
+            this.arrowPictureBox1.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox1.TabIndex = 54;
+            this.arrowPictureBox1.TabStop = false;
             // 
             // Form125GateApp
             // 
@@ -1156,21 +1190,6 @@ namespace _125GateApp
             this.tabPage4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
@@ -1194,8 +1213,24 @@ namespace _125GateApp
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1288,5 +1323,8 @@ namespace _125GateApp
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button8;
     }
 }

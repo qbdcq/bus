@@ -307,8 +307,9 @@ namespace _125GateApp
 
                 int pointIndex = chart.Series[0].Points.AddXY(row[categoryColumn].ToString(), value);
 
-                // 零值不显示数字，避免 24 个小时的 "0" 挤在基线处
-                if (chartType == SeriesChartType.Column && value > 0)
+                // 非零柱子在末端显示数值（柱状图在顶部，条形图在右端）
+                if (value > 0
+                    && (chartType == SeriesChartType.Column || chartType == SeriesChartType.Bar))
                 {
                     chart.Series[0].Points[pointIndex].Label = value.ToString();
                 }
@@ -324,6 +325,31 @@ namespace _125GateApp
             chart.Titles.Add(total == 0
                 ? title + "（暂无数据，请先完成几笔刷卡）"
                 : title);
+        }
+
+        private void SettleOpenTripsAtLastStation()
+        {
+            if (cardRepository == null || fareTable == null || fareTable.Stations.Count == 0)
+            {
+                return;
+            }
+
+            int lastSeq = fareTable.Stations[fareTable.Stations.Count - 1].Seq;
+
+            try
+            {
+                int count = cardRepository.SettleOpenTripsAtLastStation(lastSeq, DateTime.Now);
+                if (count > 0)
+                {
+                    textBox1.AppendText("已到达终点站 " + GetStationName(currentStationIndex)
+                        + "，自动结算 " + count + " 名未刷卡下车乘客（按全程票价）"
+                        + Environment.NewLine);
+                }
+            }
+            catch (Exception ex)
+            {
+                textBox1.AppendText("终点站结算失败：" + ex.Message + Environment.NewLine);
+            }
         }
 
         private decimal GetMaxFare()
@@ -416,13 +442,30 @@ namespace _125GateApp
                     }
                 }
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                AppendRideLog("刷卡处理异常：" + ex.Message);
+            }
         }
 
 
         delegate void upateValue(ProtocolModel p);
         delegate void updateMsgBox(string hexbuf);
+        
+        private void AppendRideLog(string text)
+        {
+            if (textBox1.InvokeRequired)
+            {
+                textBox1.BeginInvoke(new Action(delegate
+                {
+                    textBox1.AppendText(text + Environment.NewLine);
+                }));
+            }
+            else
+            {
+                textBox1.AppendText(text + Environment.NewLine);
+            }
+        }
         
         private void updateMsgsBox(string hexbuf)
         {
@@ -464,21 +507,37 @@ namespace _125GateApp
                                 return;
                             }
 
-                            string cardProperty = cardRepository.GetCardProperty(cardNum);
-                            decimal preDeduct = fareTable != null
-                                ? fareTable.ApplyDiscount(GetMaxFare(), cardProperty)
-                                : GetMaxFare();
+                            string cardProperty;
+                            decimal preDeduct;
+                            decimal? forgottenFare;
+                            StartTripResult result;
 
-                            // 上次忘记下车：按全程票价结算
-                            decimal? forgottenFare = cardRepository.CloseForgottenTrip(cardNum);
+                            try
+                            {
+                                cardProperty = cardRepository.GetCardProperty(cardNum);
+                                preDeduct = fareTable != null
+                                    ? fareTable.ApplyDiscount(GetMaxFare(), cardProperty)
+                                    : GetMaxFare();
+
+                                // 上次忘记下车：按全程票价结算
+                                forgottenFare = cardRepository.CloseForgottenTrip(cardNum);
+
+                                result = cardRepository.StartTrip(
+                                    cardNum, currentStationIndex + 1, DateTime.Now, preDeduct);
+                            }
+                            catch (Exception ex)
+                            {
+                                textBox1.AppendText("卡号：" + cardNum + " - 上车失败："
+                                    + ex.Message + Environment.NewLine);
+                                currentReadMode = CardReadMode.None;
+                                return;
+                            }
+
                             if (forgottenFare.HasValue)
                             {
                                 textBox1.AppendText("卡号：" + cardNum + " - 上次未刷卡下车，已按全程票价 "
                                     + forgottenFare.Value.ToString("F2") + " 元结算" + Environment.NewLine);
                             }
-
-                            StartTripResult result = cardRepository.StartTrip(
-                                cardNum, currentStationIndex + 1, DateTime.Now, preDeduct);
 
                             if (result.Status == StartTripStatus.CardNotFound)
                             {
@@ -734,6 +793,12 @@ namespace _125GateApp
             if (currentStationIndex >= stationPictureBoxes.Length)
             {
                 currentStationIndex = 0; // 循环回到起点
+            }
+
+            // 到达终点站：结算所有未刷卡下车的乘客
+            if (currentStationIndex == stationPictureBoxes.Length - 1)
+            {
+                SettleOpenTripsAtLastStation();
             }
 
             // 将当前及之前的所有站点都设为绿色

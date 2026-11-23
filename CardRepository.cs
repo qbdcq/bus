@@ -163,8 +163,9 @@ namespace _125GateApp
                 conn.Open();
                 using (NpgsqlTransaction tx = conn.BeginTransaction())
                 {
-                    long tripId;
-                    decimal preDeducted;
+                    long tripId = 0;
+                    decimal preDeducted = 0;
+                    bool found;
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(
                         "SELECT trip_id, pre_deducted FROM trip " +
@@ -174,14 +175,21 @@ namespace _125GateApp
                         cmd.Parameters.AddWithValue("card", cardNo);
                         using (NpgsqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (!reader.Read())
+                            found = reader.Read();
+                            if (found)
                             {
-                                tx.Rollback();
-                                return null;
+                                tripId = reader.GetInt64(0);
+                                preDeducted = reader.GetDecimal(1);
                             }
-                            tripId = reader.GetInt64(0);
-                            preDeducted = reader.GetDecimal(1);
                         }
+                    }
+
+                    // 必须在 reader 关闭之后再回滚，否则 Npgsql 会报
+                    // "A command is already in progress"
+                    if (!found)
+                    {
+                        tx.Rollback();
+                        return null;
                     }
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(
@@ -304,9 +312,10 @@ namespace _125GateApp
                         }
                     }
 
-                    long tripId;
-                    int boardSeq;
-                    decimal preDeducted;
+                    long tripId = 0;
+                    int boardSeq = 0;
+                    decimal preDeducted = 0;
+                    bool found;
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(
                         "SELECT trip_id, board_seq, pre_deducted FROM trip " +
@@ -316,15 +325,20 @@ namespace _125GateApp
                         cmd.Parameters.AddWithValue("card", cardNo);
                         using (NpgsqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (!reader.Read())
+                            found = reader.Read();
+                            if (found)
                             {
-                                tx.Rollback();
-                                return new EndTripResult { Status = EndTripStatus.NoOpenTrip };
+                                tripId = reader.GetInt64(0);
+                                boardSeq = reader.GetInt32(1);
+                                preDeducted = reader.GetDecimal(2);
                             }
-                            tripId = reader.GetInt64(0);
-                            boardSeq = reader.GetInt32(1);
-                            preDeducted = reader.GetDecimal(2);
                         }
+                    }
+
+                    if (!found)
+                    {
+                        tx.Rollback();
+                        return new EndTripResult { Status = EndTripStatus.NoOpenTrip };
                     }
 
                     decimal refund = preDeducted - actualFare;
@@ -367,6 +381,42 @@ namespace _125GateApp
                         Refund = refund,
                         Balance = balance
                     };
+                }
+            }
+        }
+
+        /// <summary>
+        /// 到达终点站时，统一结算所有未刷卡下车的行程：
+        /// 补全下车站、下车时间、里程，票价按上车时预扣的全程票价，状态记为 missing_alight。
+        /// 返回被结算的行程数。
+        /// </summary>
+        public int SettleOpenTripsAtLastStation(int lastSeq, DateTime alightTime)
+        {
+            const string sql = @"
+                UPDATE trip t
+                SET alight_seq = @last,
+                    alight_time = @time,
+                    distance_m = (
+                        SELECT COALESCE(SUM(d.distance_m), 0)
+                        FROM station_distance d
+                        WHERE d.seq_from >= LEAST(t.board_seq, @last)
+                          AND d.seq_to   <= GREATEST(t.board_seq, @last)
+                    ),
+                    fare = t.pre_deducted,
+                    status = 'missing_alight'
+                WHERE t.status = 'open'";
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("last", lastSeq);
+                    cmd.Parameters.Add(new NpgsqlParameter("time", NpgsqlDbType.TimestampTz)
+                    {
+                        Value = ToUtc(alightTime)
+                    });
+                    return cmd.ExecuteNonQuery();
                 }
             }
         }
