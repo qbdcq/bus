@@ -1,0 +1,15 @@
+# Visual Studio 用户配置
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# 编译输出
+bin/
+obj/
+
+# 密钥与敏感文件
+key.txt
+
+# 数据库备份
+dump-*.sql

@@ -1119,7 +1119,7 @@ namespace _125GateApp
             // 
             this.button8.Location = new System.Drawing.Point(212, 3);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(76, 23);
+            this.button8.Size = new System.Drawing.Size(81, 26);
             this.button8.TabIndex = 5;
             this.button8.Text = "换向";
             this.button8.UseVisualStyleBackColor = true;
