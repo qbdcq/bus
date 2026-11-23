@@ -26,8 +26,11 @@ namespace _125GateApp
         private decimal currentBalance = 0;
         private string currentCardNum = "";
         private int currentStationIndex = 0; // 当前站点索引（0-15）
+        private bool isUpDirection = true; // true=上行(0→15)，false=下行(15→0)
+        private bool isOdDownDirection = false; // OD 分析方向：false=上行，true=下行
         private PictureBox[] stationPictureBoxes; // 站点 PictureBox 数组
         private ArrowPictureBox[] arrowPictureBoxes; // 相邻站点之间的箭头（15 个）
+        private ArrowDirection[] originalArrowDirections; // 每个箭头的原始朝向（设计器里的方向）
         private FareTable fareTable; // 梯形票价表
         private OdAnalysisRepository odRepository; // 乘客 OD 分析
         private CardRepository cardRepository; // 卡余额与行程
@@ -54,6 +57,16 @@ namespace _125GateApp
                 arrowPictureBox6, arrowPictureBox7, arrowPictureBox8, arrowPictureBox9, arrowPictureBox10,
                 arrowPictureBox11, arrowPictureBox12, arrowPictureBox13, arrowPictureBox14, arrowPictureBox15
             };
+
+            // 记录每个箭头在设计器里的原始朝向，换向时在此基础上反转
+            originalArrowDirections = new ArrowDirection[arrowPictureBoxes.Length];
+            for (int i = 0; i < arrowPictureBoxes.Length; i++)
+            {
+                originalArrowDirections[i] = arrowPictureBoxes[i].Direction;
+            }
+
+            // 初始状态：上行，所有站点红色，只有首发站绿色
+            ResetTripState();
 
             JObject o = ComHelper.Readjson();
             Init_Com(o["COM"].ToString(), int.Parse(o["BAUD"].ToString()));
@@ -178,6 +191,14 @@ namespace _125GateApp
             button4.Click -= button4_Click;
             button4.Click += button4_Click;
 
+            button7.Click -= button7_Click;
+            button7.Click += button7_Click;
+
+            button8.Text = "换向";
+            button8.Click -= button8_Click;
+            button8.Click += button8_Click;
+            UpdateOdDirectionLabel();
+
             string connStr = ConfigurationManager.AppSettings["FareDb"];
             if (!string.IsNullOrWhiteSpace(connStr) && !connStr.Contains("请填写"))
             {
@@ -189,6 +210,29 @@ namespace _125GateApp
         private void button4_Click(object sender, EventArgs e)
         {
             RefreshOdAnalysis(true);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            isOdDownDirection = !isOdDownDirection;
+            UpdateOdDirectionLabel();
+            RefreshOdAnalysis(false);
+        }
+
+        private void UpdateOdDirectionLabel()
+        {
+            if (fareTable == null || fareTable.Stations == null || fareTable.Stations.Count < 2)
+            {
+                label27.Text = "...";
+                return;
+            }
+
+            string firstName = fareTable.Stations[0].StationName;
+            string lastName = fareTable.Stations[fareTable.Stations.Count - 1].StationName;
+
+            label27.Text = isOdDownDirection
+                ? lastName + " → " + firstName
+                : firstName + " → " + lastName;
         }
 
         private void RefreshOdAnalysis(bool showError)
@@ -233,8 +277,8 @@ namespace _125GateApp
 
             try
             {
-                DataTable flow = odRepository.GetFlowByTime(from, to);
-                DataTable segments = odRepository.GetFlowBySegment(from, to);
+                DataTable flow = odRepository.GetFlowByTime(from, to, isOdDownDirection);
+                DataTable segments = odRepository.GetFlowBySegment(from, to, isOdDownDirection);
 
                 // 峰值取自全量数据，保证切换区间时坐标轴刻度不变
                 int hourlyPeak = odRepository.GetHourlyPeak();
@@ -334,11 +378,13 @@ namespace _125GateApp
                 return;
             }
 
-            int lastSeq = fareTable.Stations[fareTable.Stations.Count - 1].Seq;
+            int terminusSeq = isUpDirection
+                ? fareTable.Stations[fareTable.Stations.Count - 1].Seq
+                : fareTable.Stations[0].Seq;
 
             try
             {
-                int count = cardRepository.SettleOpenTripsAtLastStation(lastSeq, DateTime.Now);
+                int count = cardRepository.SettleOpenTripsAtLastStation(terminusSeq, DateTime.Now);
                 if (count > 0)
                 {
                     textBox1.AppendText("已到达终点站 " + GetStationName(currentStationIndex)
@@ -350,6 +396,30 @@ namespace _125GateApp
             {
                 textBox1.AppendText("终点站结算失败：" + ex.Message + Environment.NewLine);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (stationPictureBoxes == null || arrowPictureBoxes == null)
+            {
+                return;
+            }
+
+            // 首发站和终点站都可以换向
+            bool atOrigin = currentStationIndex == 0;
+            bool atTerminus = currentStationIndex == stationPictureBoxes.Length - 1;
+
+            if (!atOrigin && !atTerminus)
+            {
+                textBox1.AppendText("换向只能在首发站或终点站操作" + Environment.NewLine);
+                return;
+            }
+
+            isUpDirection = !isUpDirection;
+            ResetTripState();
+
+            textBox1.AppendText("已换向：" + (isUpDirection ? "上行" : "下行")
+                + "，起点 " + GetStationName(currentStationIndex) + Environment.NewLine);
         }
 
         private decimal GetMaxFare()
@@ -788,29 +858,104 @@ namespace _125GateApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // 移动到下一站
-            currentStationIndex++;
-            if (currentStationIndex >= stationPictureBoxes.Length)
+            int stationCount = stationPictureBoxes.Length;
+
+            // 按当前方向移动：上行 +1，下行 -1，到端点后循环
+            if (isUpDirection)
             {
-                currentStationIndex = 0; // 循环回到起点
+                currentStationIndex = (currentStationIndex + 1) % stationCount;
+            }
+            else
+            {
+                currentStationIndex = (currentStationIndex - 1 + stationCount) % stationCount;
             }
 
-            // 到达终点站：结算所有未刷卡下车的乘客
-            if (currentStationIndex == stationPictureBoxes.Length - 1)
+            // 到达当前方向的终点站：结算所有未刷卡下车的乘客
+            if (IsAtTerminus())
             {
                 SettleOpenTripsAtLastStation();
             }
 
-            // 将当前及之前的所有站点都设为绿色
-            for (int i = 0; i <= currentStationIndex; i++)
-            {
-                stationPictureBoxes[i].BackColor = Color.Lime;
+            RefreshStationHighlight();
+        }
 
-                // 第 i 站变绿时，它与上一站（i-1）之间的箭头一起变绿；第 0 站没有前一个箭头
-                if (i > 0 && arrowPictureBoxes != null && i - 1 < arrowPictureBoxes.Length)
-                {
-                    arrowPictureBoxes[i - 1].ArrowColor = Color.Lime;
-                }
+        /// <summary>
+        /// 当前方向的终点站索引：上行 15，下行 0。
+        /// </summary>
+        private int GetTerminusIndex()
+        {
+            return isUpDirection ? stationPictureBoxes.Length - 1 : 0;
+        }
+
+        private bool IsAtTerminus()
+        {
+            return stationPictureBoxes != null
+                && currentStationIndex == GetTerminusIndex();
+        }
+
+        /// <summary>
+        /// 按当前方向刷新站点和箭头颜色：走过的变绿，未走的恢复红色。
+        /// </summary>
+        private void RefreshStationHighlight()
+        {
+            for (int i = 0; i < stationPictureBoxes.Length; i++)
+            {
+                bool passed = isUpDirection ? i <= currentStationIndex : i >= currentStationIndex;
+                stationPictureBoxes[i].BackColor = passed ? Color.Lime : Color.Red;
+            }
+
+            for (int i = 0; i < arrowPictureBoxes.Length; i++)
+            {
+                // 第 i 个箭头连接第 i 站与第 i+1 站
+                bool passed = isUpDirection ? i < currentStationIndex : i >= currentStationIndex;
+                arrowPictureBoxes[i].ArrowColor = passed ? Color.Lime : Color.Red;
+            }
+        }
+
+        /// <summary>
+        /// 重置为一段新行程的初始状态：所有站点红色，只有当前方向的起点为绿色，箭头按方向复位。
+        /// </summary>
+        private void ResetTripState()
+        {
+            if (stationPictureBoxes == null || arrowPictureBoxes == null)
+            {
+                return;
+            }
+
+            foreach (PictureBox station in stationPictureBoxes)
+            {
+                station.BackColor = Color.Red;
+            }
+
+            for (int i = 0; i < arrowPictureBoxes.Length; i++)
+            {
+                arrowPictureBoxes[i].ArrowColor = Color.Red;
+
+                ArrowDirection original = (originalArrowDirections != null && i < originalArrowDirections.Length)
+                    ? originalArrowDirections[i]
+                    : ArrowDirection.Right;
+
+                arrowPictureBoxes[i].Direction = isUpDirection
+                    ? original
+                    : ReverseDirection(original);
+            }
+
+            currentStationIndex = isUpDirection ? 0 : stationPictureBoxes.Length - 1;
+            stationPictureBoxes[currentStationIndex].BackColor = Color.Lime;
+        }
+
+        /// <summary>
+        /// 箭头反向：左右互换、上下互换。
+        /// </summary>
+        private static ArrowDirection ReverseDirection(ArrowDirection direction)
+        {
+            switch (direction)
+            {
+                case ArrowDirection.Right: return ArrowDirection.Left;
+                case ArrowDirection.Left: return ArrowDirection.Right;
+                case ArrowDirection.Up: return ArrowDirection.Down;
+                case ArrowDirection.Down: return ArrowDirection.Up;
+                default: return direction;
             }
         }
 

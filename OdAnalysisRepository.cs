@@ -21,9 +21,13 @@ namespace _125GateApp
         /// 分时客流：固定返回 00:00 ~ 23:00 共 24 个时段，
         /// 只统计所选区间内的数据，切换区间时坐标轴不变。
         /// </summary>
-        public DataTable GetFlowByTime(DateTime from, DateTime to)
+        public DataTable GetFlowByTime(DateTime from, DateTime to, bool downDirection)
         {
-            const string sql = @"
+            string directionFilter = downDirection
+                ? "board_seq > alight_seq"
+                : "board_seq < alight_seq";
+
+            string sql = @"
                 SELECT lpad(h.hour::text, 2, '0') AS ""时段"",
                        COALESCE(f.trips, 0)::int AS ""乘次""
                 FROM generate_series(0, 23) AS h(hour)
@@ -32,6 +36,7 @@ namespace _125GateApp
                            count(*)::int AS trips
                     FROM trip
                     WHERE board_time >= @from AND board_time < @to
+                      AND " + directionFilter + @"
                     GROUP BY 1
                 ) f ON f.hour = h.hour
                 ORDER BY h.hour;";
@@ -98,9 +103,13 @@ namespace _125GateApp
         /// <summary>
         /// 断面客流：统计每个相邻区间被多少条乘车记录跨越。
         /// </summary>
-        public DataTable GetFlowBySegment(DateTime from, DateTime to)
+        public DataTable GetFlowBySegment(DateTime from, DateTime to, bool downDirection)
         {
-            const string sql = @"
+            string directionFilter = downDirection
+                ? "t.board_seq > t.alight_seq"
+                : "t.board_seq < t.alight_seq";
+
+            string sql = @"
                 SELECT d.seq_from || '→' || d.seq_to AS ""路段"",
                        s1.name || ' → ' || s2.name AS ""全称"",
                        count(t.trip_id)::int AS ""人次""
@@ -111,6 +120,7 @@ namespace _125GateApp
                        ON d.seq_from >= LEAST(t.board_seq, t.alight_seq)
                       AND d.seq_to   <= GREATEST(t.board_seq, t.alight_seq)
                       AND t.board_time >= @from AND t.board_time < @to
+                      AND " + directionFilter + @"
                 GROUP BY d.seq_from, d.seq_to, s1.name, s2.name
                 ORDER BY d.seq_from;";
 

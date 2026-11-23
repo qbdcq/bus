@@ -45,6 +45,21 @@ namespace _125GateApp
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
+            this.arrowPictureBox15 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox14 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox13 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox12 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox11 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox10 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox9 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox8 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox7 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox6 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox5 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox4 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox3 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox2 = new _125GateApp.ArrowPictureBox();
+            this.arrowPictureBox1 = new _125GateApp.ArrowPictureBox();
             this.label24 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -108,25 +123,25 @@ namespace _125GateApp
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.arrowPictureBox15 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox14 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox13 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox12 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox11 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox10 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox9 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox8 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox7 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox6 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox5 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox4 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox3 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox2 = new _125GateApp.ArrowPictureBox();
-            this.arrowPictureBox1 = new _125GateApp.ArrowPictureBox();
             this.panel2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -150,21 +165,6 @@ namespace _125GateApp
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -344,6 +344,164 @@ namespace _125GateApp
             this.button7.TabIndex = 70;
             this.button7.Text = "换向";
             this.button7.UseVisualStyleBackColor = false;
+            // 
+            // arrowPictureBox15
+            // 
+            this.arrowPictureBox15.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox15.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox15.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox15.Location = new System.Drawing.Point(214, 265);
+            this.arrowPictureBox15.Name = "arrowPictureBox15";
+            this.arrowPictureBox15.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox15.TabIndex = 68;
+            this.arrowPictureBox15.TabStop = false;
+            // 
+            // arrowPictureBox14
+            // 
+            this.arrowPictureBox14.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox14.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox14.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox14.Location = new System.Drawing.Point(361, 265);
+            this.arrowPictureBox14.Name = "arrowPictureBox14";
+            this.arrowPictureBox14.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox14.TabIndex = 67;
+            this.arrowPictureBox14.TabStop = false;
+            // 
+            // arrowPictureBox13
+            // 
+            this.arrowPictureBox13.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox13.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox13.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox13.Location = new System.Drawing.Point(507, 265);
+            this.arrowPictureBox13.Name = "arrowPictureBox13";
+            this.arrowPictureBox13.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox13.TabIndex = 66;
+            this.arrowPictureBox13.TabStop = false;
+            // 
+            // arrowPictureBox12
+            // 
+            this.arrowPictureBox12.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox12.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox12.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox12.Location = new System.Drawing.Point(652, 265);
+            this.arrowPictureBox12.Name = "arrowPictureBox12";
+            this.arrowPictureBox12.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox12.TabIndex = 65;
+            this.arrowPictureBox12.TabStop = false;
+            // 
+            // arrowPictureBox11
+            // 
+            this.arrowPictureBox11.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox11.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox11.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox11.Location = new System.Drawing.Point(796, 265);
+            this.arrowPictureBox11.Name = "arrowPictureBox11";
+            this.arrowPictureBox11.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox11.TabIndex = 64;
+            this.arrowPictureBox11.TabStop = false;
+            // 
+            // arrowPictureBox10
+            // 
+            this.arrowPictureBox10.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox10.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox10.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox10.Location = new System.Drawing.Point(953, 265);
+            this.arrowPictureBox10.Name = "arrowPictureBox10";
+            this.arrowPictureBox10.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox10.TabIndex = 63;
+            this.arrowPictureBox10.TabStop = false;
+            // 
+            // arrowPictureBox9
+            // 
+            this.arrowPictureBox9.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox9.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox9.Direction = _125GateApp.ArrowDirection.Left;
+            this.arrowPictureBox9.Location = new System.Drawing.Point(1105, 265);
+            this.arrowPictureBox9.Name = "arrowPictureBox9";
+            this.arrowPictureBox9.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox9.TabIndex = 62;
+            this.arrowPictureBox9.TabStop = false;
+            // 
+            // arrowPictureBox8
+            // 
+            this.arrowPictureBox8.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox8.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox8.Direction = _125GateApp.ArrowDirection.Down;
+            this.arrowPictureBox8.Location = new System.Drawing.Point(1176, 174);
+            this.arrowPictureBox8.Name = "arrowPictureBox8";
+            this.arrowPictureBox8.Size = new System.Drawing.Size(47, 49);
+            this.arrowPictureBox8.TabIndex = 61;
+            this.arrowPictureBox8.TabStop = false;
+            // 
+            // arrowPictureBox7
+            // 
+            this.arrowPictureBox7.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox7.Location = new System.Drawing.Point(1105, 84);
+            this.arrowPictureBox7.Name = "arrowPictureBox7";
+            this.arrowPictureBox7.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox7.TabIndex = 60;
+            this.arrowPictureBox7.TabStop = false;
+            // 
+            // arrowPictureBox6
+            // 
+            this.arrowPictureBox6.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox6.Location = new System.Drawing.Point(953, 84);
+            this.arrowPictureBox6.Name = "arrowPictureBox6";
+            this.arrowPictureBox6.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox6.TabIndex = 59;
+            this.arrowPictureBox6.TabStop = false;
+            // 
+            // arrowPictureBox5
+            // 
+            this.arrowPictureBox5.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox5.Location = new System.Drawing.Point(805, 84);
+            this.arrowPictureBox5.Name = "arrowPictureBox5";
+            this.arrowPictureBox5.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox5.TabIndex = 58;
+            this.arrowPictureBox5.TabStop = false;
+            // 
+            // arrowPictureBox4
+            // 
+            this.arrowPictureBox4.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox4.Location = new System.Drawing.Point(652, 84);
+            this.arrowPictureBox4.Name = "arrowPictureBox4";
+            this.arrowPictureBox4.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox4.TabIndex = 57;
+            this.arrowPictureBox4.TabStop = false;
+            // 
+            // arrowPictureBox3
+            // 
+            this.arrowPictureBox3.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox3.Location = new System.Drawing.Point(507, 84);
+            this.arrowPictureBox3.Name = "arrowPictureBox3";
+            this.arrowPictureBox3.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox3.TabIndex = 56;
+            this.arrowPictureBox3.TabStop = false;
+            // 
+            // arrowPictureBox2
+            // 
+            this.arrowPictureBox2.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox2.Location = new System.Drawing.Point(361, 84);
+            this.arrowPictureBox2.Name = "arrowPictureBox2";
+            this.arrowPictureBox2.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox2.TabIndex = 55;
+            this.arrowPictureBox2.TabStop = false;
+            // 
+            // arrowPictureBox1
+            // 
+            this.arrowPictureBox1.ArrowColor = System.Drawing.Color.Red;
+            this.arrowPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.arrowPictureBox1.Location = new System.Drawing.Point(214, 84);
+            this.arrowPictureBox1.Name = "arrowPictureBox1";
+            this.arrowPictureBox1.Size = new System.Drawing.Size(47, 39);
+            this.arrowPictureBox1.TabIndex = 54;
+            this.arrowPictureBox1.TabStop = false;
             // 
             // label24
             // 
@@ -963,7 +1121,7 @@ namespace _125GateApp
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(76, 23);
             this.button8.TabIndex = 5;
-            this.button8.Text = "button8";
+            this.button8.Text = "换向";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -1015,164 +1173,6 @@ namespace _125GateApp
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // arrowPictureBox15
-            // 
-            this.arrowPictureBox15.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox15.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox15.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox15.Location = new System.Drawing.Point(214, 265);
-            this.arrowPictureBox15.Name = "arrowPictureBox15";
-            this.arrowPictureBox15.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox15.TabIndex = 68;
-            this.arrowPictureBox15.TabStop = false;
-            // 
-            // arrowPictureBox14
-            // 
-            this.arrowPictureBox14.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox14.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox14.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox14.Location = new System.Drawing.Point(361, 265);
-            this.arrowPictureBox14.Name = "arrowPictureBox14";
-            this.arrowPictureBox14.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox14.TabIndex = 67;
-            this.arrowPictureBox14.TabStop = false;
-            // 
-            // arrowPictureBox13
-            // 
-            this.arrowPictureBox13.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox13.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox13.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox13.Location = new System.Drawing.Point(507, 265);
-            this.arrowPictureBox13.Name = "arrowPictureBox13";
-            this.arrowPictureBox13.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox13.TabIndex = 66;
-            this.arrowPictureBox13.TabStop = false;
-            // 
-            // arrowPictureBox12
-            // 
-            this.arrowPictureBox12.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox12.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox12.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox12.Location = new System.Drawing.Point(652, 265);
-            this.arrowPictureBox12.Name = "arrowPictureBox12";
-            this.arrowPictureBox12.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox12.TabIndex = 65;
-            this.arrowPictureBox12.TabStop = false;
-            // 
-            // arrowPictureBox11
-            // 
-            this.arrowPictureBox11.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox11.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox11.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox11.Location = new System.Drawing.Point(796, 265);
-            this.arrowPictureBox11.Name = "arrowPictureBox11";
-            this.arrowPictureBox11.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox11.TabIndex = 64;
-            this.arrowPictureBox11.TabStop = false;
-            // 
-            // arrowPictureBox10
-            // 
-            this.arrowPictureBox10.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox10.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox10.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox10.Location = new System.Drawing.Point(953, 265);
-            this.arrowPictureBox10.Name = "arrowPictureBox10";
-            this.arrowPictureBox10.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox10.TabIndex = 63;
-            this.arrowPictureBox10.TabStop = false;
-            // 
-            // arrowPictureBox9
-            // 
-            this.arrowPictureBox9.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox9.Direction = _125GateApp.ArrowDirection.Left;
-            this.arrowPictureBox9.Location = new System.Drawing.Point(1105, 265);
-            this.arrowPictureBox9.Name = "arrowPictureBox9";
-            this.arrowPictureBox9.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox9.TabIndex = 62;
-            this.arrowPictureBox9.TabStop = false;
-            // 
-            // arrowPictureBox8
-            // 
-            this.arrowPictureBox8.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox8.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox8.Direction = _125GateApp.ArrowDirection.Down;
-            this.arrowPictureBox8.Location = new System.Drawing.Point(1176, 174);
-            this.arrowPictureBox8.Name = "arrowPictureBox8";
-            this.arrowPictureBox8.Size = new System.Drawing.Size(47, 49);
-            this.arrowPictureBox8.TabIndex = 61;
-            this.arrowPictureBox8.TabStop = false;
-            // 
-            // arrowPictureBox7
-            // 
-            this.arrowPictureBox7.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox7.Location = new System.Drawing.Point(1105, 84);
-            this.arrowPictureBox7.Name = "arrowPictureBox7";
-            this.arrowPictureBox7.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox7.TabIndex = 60;
-            this.arrowPictureBox7.TabStop = false;
-            // 
-            // arrowPictureBox6
-            // 
-            this.arrowPictureBox6.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox6.Location = new System.Drawing.Point(953, 84);
-            this.arrowPictureBox6.Name = "arrowPictureBox6";
-            this.arrowPictureBox6.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox6.TabIndex = 59;
-            this.arrowPictureBox6.TabStop = false;
-            // 
-            // arrowPictureBox5
-            // 
-            this.arrowPictureBox5.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox5.Location = new System.Drawing.Point(805, 84);
-            this.arrowPictureBox5.Name = "arrowPictureBox5";
-            this.arrowPictureBox5.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox5.TabIndex = 58;
-            this.arrowPictureBox5.TabStop = false;
-            // 
-            // arrowPictureBox4
-            // 
-            this.arrowPictureBox4.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox4.Location = new System.Drawing.Point(652, 84);
-            this.arrowPictureBox4.Name = "arrowPictureBox4";
-            this.arrowPictureBox4.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox4.TabIndex = 57;
-            this.arrowPictureBox4.TabStop = false;
-            // 
-            // arrowPictureBox3
-            // 
-            this.arrowPictureBox3.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox3.Location = new System.Drawing.Point(507, 84);
-            this.arrowPictureBox3.Name = "arrowPictureBox3";
-            this.arrowPictureBox3.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox3.TabIndex = 56;
-            this.arrowPictureBox3.TabStop = false;
-            // 
-            // arrowPictureBox2
-            // 
-            this.arrowPictureBox2.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox2.Location = new System.Drawing.Point(361, 84);
-            this.arrowPictureBox2.Name = "arrowPictureBox2";
-            this.arrowPictureBox2.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox2.TabIndex = 55;
-            this.arrowPictureBox2.TabStop = false;
-            // 
-            // arrowPictureBox1
-            // 
-            this.arrowPictureBox1.ArrowColor = System.Drawing.Color.Red;
-            this.arrowPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.arrowPictureBox1.Location = new System.Drawing.Point(214, 84);
-            this.arrowPictureBox1.Name = "arrowPictureBox1";
-            this.arrowPictureBox1.Size = new System.Drawing.Size(47, 39);
-            this.arrowPictureBox1.TabIndex = 54;
-            this.arrowPictureBox1.TabStop = false;
-            // 
             // Form125GateApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1190,6 +1190,21 @@ namespace _125GateApp
             this.tabPage4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
@@ -1216,21 +1231,6 @@ namespace _125GateApp
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.arrowPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
