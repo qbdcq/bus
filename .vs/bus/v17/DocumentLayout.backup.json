@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "E:\\ncist\\bus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|e:\\ncist\\bus\\form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|E:\\ncist\\bus\\form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|E:\\ncist\\bus\\faretable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:faretable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|E:\\ncist\\bus\\form125gateapp.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:form125gateapp.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|e:\\ncist\\bus\\form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:form125gateapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|E:\\ncist\\bus\\faretable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E64A0A0C-6417-43B7-BBE5-71DB6E5CE37A}|125GateApp.csproj|solutionrelative:faretable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ncist\\bus\\bin\\Debug\\GlobalCom.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FareTable.cs",
               "DocumentMoniker": "E:\\ncist\\bus\\FareTable.cs",
               "RelativeDocumentMoniker": "FareTable.cs",
@@ -62,38 +62,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Form125GateApp.Designer.cs",
               "DocumentMoniker": "E:\\ncist\\bus\\Form125GateApp.Designer.cs",
               "RelativeDocumentMoniker": "Form125GateApp.Designer.cs",
-              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.Designer.cs*",
-              "RelativeToolTip": "Form125GateApp.Designer.cs*",
-              "ViewState": "AgIAAIMDAAAAAAAAAAAvwI4DAAAmAAAAAAAAAA==",
+              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.Designer.cs",
+              "RelativeToolTip": "Form125GateApp.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-14T02:41:01.318Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form125GateApp.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\ncist\\bus\\Form125GateApp.cs",
               "RelativeDocumentMoniker": "Form125GateApp.cs",
-              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.cs [\u8BBE\u8BA1]*",
-              "RelativeToolTip": "Form125GateApp.cs [\u8BBE\u8BA1]*",
+              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Form125GateApp.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-14T02:39:29.533Z",
               "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form125GateApp.cs",
               "DocumentMoniker": "E:\\ncist\\bus\\Form125GateApp.cs",
               "RelativeDocumentMoniker": "Form125GateApp.cs",
-              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.cs*",
-              "RelativeToolTip": "Form125GateApp.cs*",
-              "ViewState": "AgIAAAECAAAAAAAAAAAvwAwCAAAvAAAAAAAAAA==",
+              "ToolTip": "E:\\ncist\\bus\\Form125GateApp.cs",
+              "RelativeToolTip": "Form125GateApp.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAswAwCAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-11T12:12:05.874Z",
               "EditorCaption": ""
