@@ -44,14 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Interfaces">
-      <HintPath>D:\FTableExp\FTableExp\bin\Interfaces.dll</HintPath>
+      <HintPath>bin\Debug\Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="IrisSkin4">
-      <HintPath>D:\FTableExp\FTableExp\bin\IrisSkin4.dll</HintPath>
+      <HintPath>bin\Debug\IrisSkin4.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\FTableExp\FTableExp\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -2142,11 +2142,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\ncist\\bus\\125GateApp.csproj",
+      "projectUniqueName": "E:\\ncist\\bus\\125GateApp.csproj",
       "projectName": "125GateApp",
-      "projectPath": "e:\\ncist\\bus\\125GateApp.csproj",
+      "projectPath": "E:\\ncist\\bus\\125GateApp.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "e:\\ncist\\bus\\obj\\",
+      "outputPath": "E:\\ncist\\bus\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "UsingMicrosoftNETSdk": false,

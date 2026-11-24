@@ -11,6 +11,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -37,9 +38,15 @@ namespace _125GateApp
 
         private enum CardReadMode { None, Board, Alight }
         private CardReadMode currentReadMode = CardReadMode.None;
+        private bool cardOperationInProgress;
+        private int cardLookupVersion;
+        private string baseWindowTitle = "";   // 标题栏基本标题
+        private long dbLatencyCheckInProgress; // 0=空闲，1=探测中，防止上一轮还没完成下一轮又发
+        private System.Windows.Forms.Timer dbLatencyTimer;
 
         private void Form125GateApp_Load(object sender, EventArgs e)
         {
+            baseWindowTitle = this.Text;
             LoadFareTable();
             InitOdControls();
 
@@ -70,6 +77,12 @@ namespace _125GateApp
 
             JObject o = ComHelper.Readjson();
             Init_Com(o["COM"].ToString(), int.Parse(o["BAUD"].ToString()));
+
+            // 每 3 秒探测一次数据库延迟并显示在标题栏
+            dbLatencyTimer = new System.Windows.Forms.Timer();
+            dbLatencyTimer.Interval = 3000;
+            dbLatencyTimer.Tick += dbLatencyTimer_Tick;
+            dbLatencyTimer.Start();
         }
 
         private void LoadFareTable()
@@ -235,7 +248,7 @@ namespace _125GateApp
                 : firstName + " → " + lastName;
         }
 
-        private void RefreshOdAnalysis(bool showError)
+        private async void RefreshOdAnalysis(bool showError)
         {
             if (odRepository == null)
             {
@@ -275,17 +288,22 @@ namespace _125GateApp
                     break;
             }
 
+            button4.Enabled = false;
+            button4.Text = "加载中...";
+            bool downDirection = isOdDownDirection;
             try
             {
-                DataTable flow = odRepository.GetFlowByTime(from, to, isOdDownDirection);
-                DataTable segments = odRepository.GetFlowBySegment(from, to, isOdDownDirection);
+                var result = await Task.Run(() =>
+                {
+                    DataTable flow = odRepository.GetFlowByTime(from, to, downDirection);
+                    DataTable segments = odRepository.GetFlowBySegment(from, to, downDirection);
+                    int hourlyPeak = odRepository.GetHourlyPeak();
+                    int segmentPeak = odRepository.GetSegmentPeak();
+                    return Tuple.Create(flow, segments, hourlyPeak, segmentPeak);
+                });
 
-                // 峰值取自全量数据，保证切换区间时坐标轴刻度不变
-                int hourlyPeak = odRepository.GetHourlyPeak();
-                int segmentPeak = odRepository.GetSegmentPeak();
-
-                BindChart(chart1, flow, "时段", "乘次", SeriesChartType.Column, "分时客流", hourlyPeak, null);
-                BindChart(chart2, segments, "全称", "人次", SeriesChartType.Bar, "断面客流", segmentPeak, null);
+                BindChart(chart1, result.Item1, "时段", "乘次", SeriesChartType.Column, "分时客流", result.Item3, null);
+                BindChart(chart2, result.Item2, "全称", "人次", SeriesChartType.Bar, "断面客流", result.Item4, null);
             }
             catch (Exception ex)
             {
@@ -293,6 +311,11 @@ namespace _125GateApp
                 {
                     MessageBox.Show("OD 分析数据加载失败：" + ex.Message, "提示");
                 }
+            }
+            finally
+            {
+                button4.Enabled = true;
+                button4.Text = "查询";
             }
         }
 
@@ -371,7 +394,7 @@ namespace _125GateApp
                 : title);
         }
 
-        private void SettleOpenTripsAtLastStation()
+        private async void SettleOpenTripsAtLastStation()
         {
             if (cardRepository == null || fareTable == null || fareTable.Stations.Count == 0)
             {
@@ -382,9 +405,10 @@ namespace _125GateApp
                 ? fareTable.Stations[fareTable.Stations.Count - 1].Seq
                 : fareTable.Stations[0].Seq;
 
+            AppendRideLog("终点站结算处理中...");
             try
             {
-                int count = cardRepository.SettleOpenTripsAtLastStation(terminusSeq, DateTime.Now);
+                int count = await Task.Run(() => cardRepository.SettleOpenTripsAtLastStation(terminusSeq, DateTime.Now));
                 if (count > 0)
                 {
                     textBox1.AppendText("已到达终点站 " + GetStationName(currentStationIndex)
@@ -536,6 +560,44 @@ namespace _125GateApp
                 textBox1.AppendText(text + Environment.NewLine);
             }
         }
+
+        // 每 5 秒主动探测一次数据库延迟并刷新标题栏
+        private void dbLatencyTimer_Tick(object sender, EventArgs e)
+        {
+            if (IsDisposed || cardRepository == null
+                || Interlocked.Exchange(ref dbLatencyCheckInProgress, 1) != 0)
+            {
+                return;
+            }
+
+            CardRepository repo = cardRepository;
+            Task.Run(() =>
+            {
+                long ms = -1;
+                try
+                {
+                    System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
+                    repo.Ping();
+                    ms = sw.ElapsedMilliseconds;
+                }
+                catch
+                {
+                    ms = -1;
+                }
+
+                string newText = ms >= 0
+                    ? baseWindowTitle + " " + ms + "ms"
+                    : baseWindowTitle + "　[DB 连接失败]";
+                BeginInvoke(new Action(delegate
+                {
+                    if (!IsDisposed)
+                    {
+                        Text = newText;
+                    }
+                }));
+                Interlocked.Exchange(ref dbLatencyCheckInProgress, 0);
+            });
+        }
         
         private void updateMsgsBox(string hexbuf)
         {
@@ -555,6 +617,16 @@ namespace _125GateApp
 
                 if (p.OrderCode[0] == Protocol.SingleCard_ACK[0] && p.OrderCode[1] == Protocol.SingleCard_ACK[1])
                 {
+                    if (isDoor)
+                    {
+                        currentCardNum = Protocol.BytesToString(content);
+                        lbDoorCard.Text = currentCardNum;
+                        label9.Text = "查询中...";
+                        label26.Text = "查询中...";
+                        LoadCardInfoAsync(currentCardNum, Interlocked.Increment(ref cardLookupVersion));
+                        return;
+                    }
+
                     if (isDoor == false)
                     {
                         // tabPage4 刷卡乘车页面
@@ -564,6 +636,23 @@ namespace _125GateApp
                         {
                             textBox1.AppendText("卡号：" + cardNum + " - 数据库未配置，无法刷卡" + Environment.NewLine);
                             currentReadMode = CardReadMode.None;
+                            return;
+                        }
+
+                        // 数据库请求在后台线程执行，串口和界面线程无需等待 Supabase 返回。
+                        CardReadMode readMode = currentReadMode;
+                        if (readMode == CardReadMode.Board || readMode == CardReadMode.Alight)
+                        {
+                            if (cardOperationInProgress)
+                            {
+                                textBox1.AppendText("卡号：" + cardNum + " - 上一笔刷卡仍在处理中" + Environment.NewLine);
+                                return;
+                            }
+
+                            currentReadMode = CardReadMode.None;
+                            cardOperationInProgress = true;
+                            textBox1.AppendText("卡号：" + cardNum + " - 处理中..." + Environment.NewLine);
+                            ProcessRideCardAsync(cardNum, readMode, currentStationIndex);
                             return;
                         }
 
@@ -710,6 +799,108 @@ namespace _125GateApp
             }), p);
         }
 
+        private async void LoadCardInfoAsync(string cardNo, int version)
+        {
+            try
+            {
+                var info = await Task.Run(() => Tuple.Create(
+                    cardRepository.GetBalance(cardNo),
+                    cardRepository.GetCardProperty(cardNo)));
+
+                if (IsDisposed || version != Volatile.Read(ref cardLookupVersion) || cardNo != currentCardNum)
+                    return;
+
+                if (info.Item1.HasValue)
+                {
+                    currentBalance = info.Item1.Value;
+                    label9.Text = currentBalance.ToString("F2") + "元";
+                }
+                else
+                {
+                    label9.Text = "该卡未注册，请先充值";
+                }
+
+                label26.Text = string.IsNullOrEmpty(info.Item2) ? "未设置" : info.Item2;
+                int index = comboBox2.Items.IndexOf(info.Item2);
+                comboBox2.SelectedIndex = index >= 0 ? index : 0;
+            }
+            catch (Exception ex)
+            {
+                if (!IsDisposed && version == Volatile.Read(ref cardLookupVersion))
+                {
+                    label9.Text = "查询失败";
+                    label26.Text = "查询失败";
+                    AppendRideLog("读卡信息查询失败：" + ex.Message);
+                }
+            }
+        }
+
+        private async void ProcessRideCardAsync(string cardNo, CardReadMode mode, int stationIndex)
+        {
+            try
+            {
+                if (mode == CardReadMode.Board)
+                {
+                    if (fareTable == null || GetMaxFare() <= 0)
+                    {
+                        AppendRideLog("卡号：" + cardNo + " - 票价表未加载，无法上车");
+                        return;
+                    }
+
+                    decimal maxFare = GetMaxFare();
+                    var result = await Task.Run(() =>
+                    {
+                        string property = cardRepository.GetCardProperty(cardNo);
+                        decimal preDeduct = fareTable.ApplyDiscount(maxFare, property);
+                        decimal? forgotten = cardRepository.CloseForgottenTrip(cardNo);
+                        StartTripResult start = cardRepository.StartTrip(cardNo, stationIndex + 1, DateTime.Now, preDeduct);
+                        return Tuple.Create(property, preDeduct, forgotten, start);
+                    });
+
+                    if (result.Item3.HasValue)
+                        AppendRideLog("卡号：" + cardNo + " - 上次未刷卡下车，已按全程票价 " + result.Item3.Value.ToString("F2") + " 元结算");
+
+                    if (result.Item4.Status == StartTripStatus.Success)
+                        AppendRideLog("卡号：" + cardNo + " - 上车成功，余额 " + result.Item4.Balance.ToString("F2") + " 元");
+                    else if (result.Item4.Status == StartTripStatus.CardNotFound)
+                        AppendRideLog("卡号：" + cardNo + " - 该卡未注册，请先充值");
+                    else if (result.Item4.Status == StartTripStatus.InsufficientBalance)
+                        AppendRideLog("卡号：" + cardNo + " - 余额不足，无法上车");
+                    else
+                        AppendRideLog("卡号：" + cardNo + " - 您已在车上，请先刷下车卡");
+                }
+                else
+                {
+                    var result = await Task.Run(() =>
+                    {
+                        OpenTripInfo openTrip = cardRepository.GetOpenTrip(cardNo);
+                        if (openTrip == null) return Tuple.Create<OpenTripInfo, string, int, decimal, EndTripResult>(null, null, 0, 0m, null);
+                        string property = cardRepository.GetCardProperty(cardNo);
+                        int alightSeq = stationIndex + 1;
+                        int distance = fareTable.GetDistanceM(openTrip.BoardSeq, alightSeq);
+                        decimal fare = fareTable.GetFare(openTrip.BoardSeq, alightSeq, property);
+                        EndTripResult end = cardRepository.EndTrip(cardNo, alightSeq, DateTime.Now, distance, fare);
+                        return Tuple.Create(openTrip, property, distance, fare, end);
+                    });
+
+                    if (result.Item1 == null)
+                        AppendRideLog("卡号：" + cardNo + " - 未上车，请先刷卡上车");
+                    else if (result.Item5.Status != EndTripStatus.Success)
+                        AppendRideLog("卡号：" + cardNo + " - 下车失败，请重试");
+                    else
+                        AppendRideLog("卡号：" + cardNo + " - 下车成功，实扣 " + result.Item4.ToString("F2") + " 元，退还 " + result.Item5.Refund.ToString("F2") + " 元，余额 " + result.Item5.Balance.ToString("F2") + " 元");
+                }
+            }
+            catch (Exception ex)
+            {
+                AppendRideLog("卡号：" + cardNo + " - 数据库操作失败：" + ex.Message);
+            }
+            finally
+            {
+                cardOperationInProgress = false;
+            }
+        }
+
         private string GetStationName(int index)
         {
             string[] stations = {
@@ -736,7 +927,7 @@ namespace _125GateApp
             }
         }
         
-        private void btnZC_Click(object sender, EventArgs e)
+        private async void btnZC_Click(object sender, EventArgs e)
         {
             lbZCState.Text = "....";
 
@@ -759,10 +950,13 @@ namespace _125GateApp
                 return;
             }
 
+            string cardNo = lbDoorCard.Text;
+            btnZC.Enabled = false;
+            lbZCState.Text = "充值处理中...";
             try
             {
-                decimal oldBalance = cardRepository.GetBalance(lbDoorCard.Text) ?? 0m;
-                decimal newBalance = cardRepository.Recharge(lbDoorCard.Text, rechargeAmount);
+                decimal oldBalance = await Task.Run(() => cardRepository.GetBalance(cardNo) ?? 0m);
+                decimal newBalance = await Task.Run(() => cardRepository.Recharge(cardNo, rechargeAmount));
 
                 currentBalance = newBalance;
                 label9.Text = newBalance.ToString("F2") + "元";
@@ -773,9 +967,13 @@ namespace _125GateApp
             {
                 lbZCState.Text = "充值失败：" + ex.Message;
             }
+            finally
+            {
+                btnZC.Enabled = true;
+            }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private async void button5_Click(object sender, EventArgs e)
         {
             lbZCState.Text = "....";
 
@@ -798,9 +996,12 @@ namespace _125GateApp
                 return;
             }
 
+            string cardNo = lbDoorCard.Text;
+            button5.Enabled = false;
+            lbZCState.Text = "属性保存中...";
             try
             {
-                if (cardRepository.UpdateCardProperty(lbDoorCard.Text, selectedProperty))
+                if (await Task.Run(() => cardRepository.UpdateCardProperty(cardNo, selectedProperty)))
                 {
                     label26.Text = selectedProperty;
                     lbZCState.Text = "属性保存成功：" + selectedProperty;
@@ -813,6 +1014,10 @@ namespace _125GateApp
             catch (Exception ex)
             {
                 lbZCState.Text = "属性保存失败：" + ex.Message;
+            }
+            finally
+            {
+                button5.Enabled = true;
             }
         }
 

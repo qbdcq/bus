@@ -68,6 +68,21 @@ namespace _125GateApp
         }
 
         /// <summary>
+        /// 轻量连通性探测：仅执行 SELECT 1，用于空闲时兜底测量数据库延迟。
+        /// </summary>
+        public void Ping()
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT 1", conn))
+                {
+                    cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        /// <summary>
         /// 充值；卡不存在时自动创建。
         /// </summary>
         public decimal Recharge(string cardNo, decimal amount)
