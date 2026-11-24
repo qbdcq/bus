@@ -197,9 +197,12 @@ namespace _125GateApp
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new object[]
             {
-                "最近 30 分钟", "最近 1 小时", "今天", "近 7 天", "全部"
+                "最近 30 分钟", "最近 1 小时", "今天", "近 7 天", "全部", "指定日期"
             });
             comboBox1.SelectedIndex = 0;
+
+            dateTimePicker1.ValueChanged -= dateTimePicker1_ValueChanged;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
 
             button4.Click -= button4_Click;
             button4.Click += button4_Click;
@@ -223,6 +226,16 @@ namespace _125GateApp
         private void button4_Click(object sender, EventArgs e)
         {
             RefreshOdAnalysis(true);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // 用户主动改了日历日期，自动切换到“指定日期”选项
+            int idx = comboBox1.Items.IndexOf("指定日期");
+            if (idx >= 0 && comboBox1.SelectedIndex != idx)
+            {
+                comboBox1.SelectedIndex = idx;
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -286,6 +299,16 @@ namespace _125GateApp
                     from = DateTime.Today;
                     to = DateTime.Today.AddDays(1);
                     break;
+            }
+
+            // 指定日期：只在“指定日期”选中且用户从日历选了日期时启用
+            int specifiedIdx = comboBox1.Items.IndexOf("指定日期");
+            if (specifiedIdx >= 0 && comboBox1.SelectedIndex == specifiedIdx
+                && dateTimePicker1 != null)
+            {
+                DateTime picked = dateTimePicker1.Value.Date;
+                from = picked;
+                to = picked.AddDays(1);
             }
 
             button4.Enabled = false;

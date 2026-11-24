@@ -28,12 +28,12 @@ namespace _125GateApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel2 = new System.Windows.Forms.Panel();
             this.llRecClear = new System.Windows.Forms.LinkLabel();
             this.llSendClear = new System.Windows.Forms.LinkLabel();
@@ -123,6 +123,7 @@ namespace _125GateApp
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -1092,6 +1093,7 @@ namespace _125GateApp
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Controls.Add(this.button4);
@@ -1109,7 +1111,7 @@ namespace _125GateApp
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(294, 7);
+            this.label27.Location = new System.Drawing.Point(422, 7);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(63, 15);
             this.label27.TabIndex = 6;
@@ -1117,18 +1119,18 @@ namespace _125GateApp
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(212, 3);
+            this.button8.Location = new System.Drawing.Point(335, 0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(81, 26);
+            this.button8.Size = new System.Drawing.Size(81, 30);
             this.button8.TabIndex = 5;
             this.button8.Text = "换向";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(515, 3);
+            this.button4.Location = new System.Drawing.Point(628, 0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 26);
+            this.button4.Size = new System.Drawing.Size(81, 30);
             this.button4.TabIndex = 4;
             this.button4.Text = "刷新";
             this.button4.UseVisualStyleBackColor = true;
@@ -1138,40 +1140,47 @@ namespace _125GateApp
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(3, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(203, 23);
+            this.comboBox1.Size = new System.Drawing.Size(146, 23);
             this.comboBox1.TabIndex = 2;
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea17.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea17);
+            legend17.Name = "Legend1";
+            this.chart2.Legends.Add(legend17);
             this.chart2.Location = new System.Drawing.Point(6, 32);
             this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
+            series17.ChartArea = "ChartArea1";
+            series17.Legend = "Legend1";
+            series17.Name = "Series1";
+            this.chart2.Series.Add(series17);
             this.chart2.Size = new System.Drawing.Size(747, 550);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea18.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea18);
+            legend18.Name = "Legend1";
+            this.chart1.Legends.Add(legend18);
             this.chart1.Location = new System.Drawing.Point(759, 32);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series18.ChartArea = "ChartArea1";
+            series18.Legend = "Legend1";
+            series18.Name = "Series1";
+            this.chart1.Series.Add(series18);
             this.chart1.Size = new System.Drawing.Size(600, 550);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(156, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(173, 25);
+            this.dateTimePicker1.TabIndex = 7;
             // 
             // Form125GateApp
             // 
@@ -1326,5 +1335,6 @@ namespace _125GateApp
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
